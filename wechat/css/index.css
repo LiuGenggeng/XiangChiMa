@@ -1,6 +1,11 @@
 /***************************************/
 /****  响应式，针对不同分辨率字体不同 *****/
 /***************************************/
+@media only screen and (min-width: 1080px) {
+    html,body {
+        font-size: 40.5px;
+    }
+}
 @media only screen and (max-width: 1080px), only screen and (max-device-width:1080px) {
     html,body {
         font-size:40.5px;
@@ -70,4 +75,132 @@
     html,body {
         font-size:9px;
     }
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+body {
+    font-family: '微软雅黑 Bold', '微软雅黑';
+    background-color: #eeeeee;
+}
+.clear {
+    clear: both;
+}
+.lists {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+}
+.list {
+    margin-top: 1.3rem;
+    display: block;
+    background-color: #fff;
+    width: 25.3rem;
+}
+.lists .list:last-child {
+    margin-bottom: 5.2rem;
+}
+.footer {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    padding-top: 1rem;
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    height:4rem;
+    background-color: #fff;
+}
+.footer .release-btn,.footer .myRelease-btn {
+    font-weight: bold;
+    height: 3rem;
+    width: 12rem;
+    line-height: 3rem;
+    border: 2px solid #0c9f68;
+    border-radius: 2px;
+    float: left;
+    text-align: center;
+    letter-spacing: 0.2rem;
+}
+.footer .release-btn {
+    background-color: #0c9f68;
+    color: #fff;
+}
+.footer .myRelease-btn {
+    margin-left: 2%;
+    background-color: #fff;
+    color: #0c9f68;
+}
+/***********************/
+/****  发布列表页面  ****/
+/***********************/
+.list-top {
+    height: 10rem;
+    overflow: hidden;
+    border-bottom: 1px solid #efefef;
+}
+.list-img {
+    float: left;
+    width: 10rem;
+    height: 10rem;
+}
+.list-img img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+}
+.list-description {
+    padding: 1rem;
+    float: left;
+}
+.description {
+    letter-spacing: 0.02rem;
+    font-size: 0.95rem;
+    margin-top: 0.8rem;
+    line-height: 1.3rem;
+    width: 13rem;
+    height: 4rem;
+    color: #7f7f7f;
+}
+.list-tich {
+    margin-top: 0.4rem;
+    display: flex;
+    justify-content: space-between;
+}
+.list-mortgage {
+    height: 2.5rem;
+    line-height: 2.5rem;
+}
+.list-time {
+    color: #cfcfcf;
+}
+.list-much {
+    color: #0c9f68;
+    letter-spacing: 0.3rem;
+}
+.ya {
+    margin-left: 1rem;
+    border-radius: 2px;
+    background-color: #0c9f68;
+    color: #fff;
+    font-size: 1.2rem;
+    width: 1.7rem;
+    height: 1.7rem;
+    text-align: center;
+    line-height: 1.7rem;
+    display: inline-block;
+}
+.list-mortgage p{
+    margin-left: 1rem;
+    letter-spacing: 0.1rem;
+    display: inline-block;
+    color: #0c9f68;
+    font-weight: 400;
 }

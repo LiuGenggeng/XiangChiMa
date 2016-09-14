@@ -1,12 +1,7 @@
 /**
  * Created by Administrator on 2016/9/12.
  */
-var app = angular.module('xzm',['ui.router'])
-    .run(['$location','$rootScope',function($location, $rootScope){
-        $rootScope.$on('$stateChangeSuccess', function (event, toState) {
-            $rootScope.title = toState.title
-        });
-    }]);
+var app = angular.module('xzm',['ui.router','appCtrls']);
 app.config(function ($stateProvider, $urlRouterProvider)  {
     $urlRouterProvider.when("", "/releaseList");
     $urlRouterProvider.otherwise('/releaseList');
@@ -14,8 +9,8 @@ app.config(function ($stateProvider, $urlRouterProvider)  {
         .state("releaseList", {
             url: "/releaseList",
             templateUrl: 'tpls/releaseList.html',
-            title:"发布列表"/*,
-            controller:"releaseListCtrl"*/
+            title:"发布列表",
+            controller:"releaseListCtrl"
         })
         .state("release", {
             url: "/release",

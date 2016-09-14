@@ -1,3 +1,28 @@
-发布列表页面
-<a href="" ui-sref="release">发布出租</a>
-<a href="" ui-sref="myRelease">我的发布</a>
+<div class="lists">
+    <div>
+        <div ng-repeat="list in lists" class="list" id="{{list.id}}">
+            <div class="list-top">
+                <div class="list-img">
+                    <img ng-src="list.images" alt="照片">
+                </div>
+                <div class="list-description">
+                    <h3 ng-bind="list.name"></h3>
+                    <div ng-bind="list.description" class="description"></div>
+                    <div class="list-tich">
+                        <span ng-bind="list.time" class="list-time"></span>
+                        <span ng-bind="list.much" class="list-much"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="list-mortgage">
+                <span class="ya">押</span>
+                <p>押金<span ng-bind="list.mortgage"></span>元 <span ng-if="list.card>0">(持有效证件可抵<span ng-bind="list.cardCash"></span>元)</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <a href="" ui-sref="release" class="release-btn">发布出租</a>
+    <a href="" ui-sref="myRelease" class="myRelease-btn">我的发布</a>
+</div>
+<div class="clear"></div>
