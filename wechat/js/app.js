@@ -21,8 +21,8 @@ app.config(function ($stateProvider, $urlRouterProvider)  {
         .state("myRelease", {
             url: "/myRelease",
             templateUrl: 'tpls/myRelease.html',
-            title:"我的发布"/*,
-            controller:"myReleaseCtrl"*/
+            title:"我的发布",
+            controller:"myReleaseCtrl"
         })
         .state("itemDetails", {
             url: "/itemDetails",

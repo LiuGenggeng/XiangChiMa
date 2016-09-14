@@ -117,7 +117,7 @@ body {
     height:4rem;
     background-color: #fff;
 }
-.footer .release-btn,.footer .myRelease-btn {
+.footer .release-btn,.footer .myRelease-btn,.footer .finaishChange-btn {
     font-weight: bold;
     height: 3rem;
     width: 12rem;
@@ -132,7 +132,7 @@ body {
     background-color: #0c9f68;
     color: #fff;
 }
-.footer .myRelease-btn {
+.footer .myRelease-btn ,.footer .finaishChange-btn {
     margin-left: 2%;
     background-color: #fff;
     color: #0c9f68;
@@ -203,4 +203,16 @@ body {
     display: inline-block;
     color: #0c9f68;
     font-weight: 400;
+}
+/***********************/
+/****  我的发布页面  ****/
+/***********************/
+.delete {
+    width: 1.8rem;
+    height: 1.8rem;
+}
+.delete img {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
 }

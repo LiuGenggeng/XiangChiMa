@@ -20,3 +20,13 @@ appCtrls.controller('releaseListCtrl',['$scope',
         ]
     }
 ]);
+appCtrls.controller('myReleaseCtrl',['$scope',
+    function ($scope) {
+        $scope.lists = [
+            {'card':'8','cardCash':'10','id':'1','name':'Giant 自行车','description':'出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆','images':'','time':'刚刚','much':'30元/天','mortgage':"10"},
+            {'id':'2','name':'Giant 自行车','description':'出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆','images':'','time':'刚刚','much':'30元/天','mortgage':"10"},
+            {'id':'3','name':'Giant 自行车','description':'出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆','images':'','time':'刚刚','much':'30元/天','mortgage':"10"},
+            {'id':'4','name':'Giant 自行车','description':'出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆','images':'','time':'刚刚','much':'30元/天','mortgage':"10"}
+        ]
+    }
+]);
