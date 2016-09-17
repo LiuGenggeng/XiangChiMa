@@ -15,8 +15,8 @@ app.config(function ($stateProvider, $urlRouterProvider)  {
         .state("release", {
             url: "/release",
             templateUrl: 'tpls/release.html',
-            title:"发布"/*,
-            controller:"releaseCtrl"*/
+            title:"发布",
+            controller:"releaseCtrl"
         })
         .state("myRelease", {
             url: "/myRelease",
@@ -27,7 +27,7 @@ app.config(function ($stateProvider, $urlRouterProvider)  {
         .state("itemDetails", {
             url: "/itemDetails",
             templateUrl: 'tpls/itemDetails.html',
-            title:"物品详情"/*,
-            controller:"itemDetailsCtrl"*/
+            title:"物品详情",
+            controller:"itemDetailsCtrl"
         })
 })

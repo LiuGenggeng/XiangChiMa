@@ -30,3 +30,28 @@ appCtrls.controller('myReleaseCtrl',['$scope',
         ]
     }
 ]);
+appCtrls.controller('releaseCtrl',['$scope',
+    function ($scope) {
+        $scope.time = '今天14:30发布';
+        $scope.much = '34'
+    }
+]);
+appCtrls.controller('itemDetailsCtrl',['$scope',
+    function ($scope) {
+        $scope.toggle = false;
+        $scope.time = '今天14:30发布';
+        $scope.much = '34';
+        $scope.title = 'TENTX 舒适型个人帐篷';
+        $scope.mortgage = '10';
+        $scope.card = '1';
+        $scope.cardCash = '8';
+        $scope.link = '14743163347';
+        $scope.description = '出租TENTX品牌舒适型个人帐篷意见，可长时间租用，个人爱护的比I啊哦好，9新，可给需要户外旅游的人事租用';
+        $scope.zu = function() {
+            $scope.toggle = !$scope.toggle;
+        };
+        $scope.close = function() {
+            $scope.toggle = false;
+        }
+    }
+]);
