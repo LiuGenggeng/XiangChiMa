@@ -256,7 +256,41 @@ textarea {
     margin-right: 10px;
 }
 .release_much, .release_mortgage {
+    background-color: #fff;
     display: flex;
     display: -webkit-flex;
     justify-content: center;
+}
+.release_mortgage {
+    border-left: 1px solid #dedbdb;
+}
+.release_much span, .release_mortgage span {
+    font-size: 2rem;
+    color: #0c9f68;
+}
+.toggle_mortgage {
+    background-color: #fff;
+}
+.agree_mortgage {
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: #0c9f68;
+}
+.input_mortgage {
+    margin-top: 0.8rem;
+    border-top: 1px solid #dedbdb;
+    padding-top: 1rem;
+}
+.mortgage_input {
+    margin-left: 0.5rem;
+    border: none;
+    width: 6rem;
+    height: 2.3333rem;
+    background-color: #eeeeee;
+}
+.weui_cells_checkbox .weui_icon_checked:before {
+    font-size: 2rem !important;
+}
+.weui_cells_checkbox .weui_cell_hd {
+
 }
