@@ -32,8 +32,8 @@ appCtrls.controller('myReleaseCtrl',['$scope',
 ]);
 appCtrls.controller('releaseCtrl',['$scope',
     function ($scope) {
-        $scope.time = '今天14:30发布';
-        $scope.much = '34'
+        $scope.release_much = '0';
+        $scope.release_mortgage = '0'
     }
 ]);
 appCtrls.controller('itemDetailsCtrl',['$scope',
