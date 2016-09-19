@@ -264,9 +264,17 @@ textarea {
 .release_mortgage {
     border-left: 1px solid #dedbdb;
 }
-.release_much span, .release_mortgage span {
+.release_much input, .release_mortgage input {
+    width: 4.4rem;
+    height: 2.3333rem;
+    margin-top: 0.5rem;
     font-size: 2rem;
     color: #0c9f68;
+    text-align: right;
+    border: none;
+}
+.release_much h3, .release_mortgage h3 {
+    text-align: center;
 }
 .toggle_mortgage {
     background-color: #fff;
@@ -296,13 +304,27 @@ textarea {
     font-size: 2rem !important;
 }
 .confirm_release {
+    width: 100%;
     background-color: #0c9f68 !important;
     border-radius: 0 !important
 }
 .mortgage_div {
+    border-top: 1px solid #dedbdb;
+    background-color: #fff;
     -webkit-align-items: flex-start !important;
     align-items: flex-start !important;
 }
 .agree_content {
     color: #bdbdbd;
+}
+.no_bottom {
+    padding-bottom: 0 !important;
+}
+.no_top {
+    padding-top: 0 !important;
+}
+.unit {
+    color: #bdbdbd;
+    width: 3rem;
+    display: inline-block;
 }
