@@ -25,17 +25,17 @@
     </div>
 </div>
 <div class="weui_cells weui_cells_checkbox">
-    <label class="weui_cell weui_check_label" for="s11">
+    <label class="weui_cell weui_check_label mortgage_div" for="s11">
         <div class="weui_cell_hd">
-            <input type="checkbox" class="weui_check" name="checkbox1" id="s11">
+            <input type="checkbox" class="weui_check" name="checkbox1" id="s11" ng-model="toggle_mortgage">
             <i class="weui_icon_checked"></i>
         </div>
         <div class="weui_cell_bd weui_cell_primary">
-            <p>同意有效证件(学生证、身份证等),可抵适当押金</p>
-            <div class="input_mortgage">
+            <p ng-class="{'agree_content':!toggle_mortgage}">同意有效证件(学生证、身份证等),可抵适当押金</p>
+            <div class="input_mortgage" ng-show="toggle_mortgage">
                 请输入抵扣额度: <input type="number" class="mortgage_input"/> 元
             </div>
         </div>
     </label>
 </div>
-<div style="position: fixed;bottom: 0;width: 100%;"><a href="javascript:;" class="weui_btn weui_btn_primary" style="background-color: #0c9f68 !important;">确认发布</a></div>
+<div style="position: fixed;bottom: 0;width: 100%;"><a href="javascript:;" class="weui_btn weui_btn_primary confirm_release">确认发布</a></div>

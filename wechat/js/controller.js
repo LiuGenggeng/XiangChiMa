@@ -39,6 +39,7 @@ appCtrls.controller('releaseCtrl',['$scope',
 appCtrls.controller('itemDetailsCtrl',['$scope',
     function ($scope) {
         $scope.toggle = false;
+        $scope.toggle_mortgage = false;
         $scope.time = '今天14:30发布';
         $scope.much = '34';
         $scope.title = 'TENTX 舒适型个人帐篷';
@@ -52,6 +53,6 @@ appCtrls.controller('itemDetailsCtrl',['$scope',
         };
         $scope.close = function() {
             $scope.toggle = false;
-        }
+        };
     }
 ]);
