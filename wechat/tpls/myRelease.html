@@ -10,7 +10,7 @@
                     <div ng-bind="list.description" class="description"></div>
                     <div class="list-tich">
                         <span ng-bind="list.time" class="list-time"></span>
-                        <span class="delete"><img src="images/icon2.png"></span>
+                        <span class="delete" ng-click="zu()"><img src="images/icon2.png"></span>
                     </div>
                 </div>
             </div>
@@ -22,3 +22,16 @@
     <a href="" class="finaishChange-btn">完成更改</a>
 </div>
 <div class="clear"></div>
+<!--提示框部分 start-->
+<div class="weui_dialog_confirm" id="dialog1" ng-if="toggle">
+    <div class="weui_mask"></div>
+    <div class="weui_dialog">
+        <div class="weui_dialog_hd"><strong class="weui_dialog_title">警告</strong></div>
+        <div class="weui_dialog_bd">您确定要删除此项么?</div>
+        <div class="weui_dialog_ft">
+            <a href="javascript:;" class="weui_btn_dialog default" ng-click="close()">取消</a>
+            <a href="javascript:;" class="weui_btn_dialog primary">确定</a>
+        </div>
+    </div>
+</div>
+<!--提示框部分 end-->
