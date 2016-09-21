@@ -38,11 +38,18 @@ appCtrls.controller('myReleaseCtrl',['$scope',
     }
 ]);
 appCtrls.controller('releaseCtrl',['$scope',
-    function ($scope) {
+    function ($scope, fileReader) {
+        $scope.imageSrc = "";
         $scope.toggle_mortgage = false;
         $scope.Description = '';
         $scope.release_much = '0';
-        $scope.release_mortgage = '0'
+        $scope.release_mortgage = '0';
+        $scope.getFile = function () {
+            fileReader.readAsDataUrl($scope.file, $scope)
+                .then(function(result) {
+                    $scope.imageSrc = result;
+                });
+        }
     }
 ]);
 appCtrls.controller('itemDetailsCtrl',['$scope',
