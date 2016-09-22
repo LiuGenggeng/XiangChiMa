@@ -19,3 +19,27 @@ appDirectives.directive('fileModel', ['$parse', function ($parse) {
         }
     };
 }]);
+appDirectives.directive('delete',[function($http) {
+    return {
+        restrict: 'AE',
+        link: function(scope, element, attrs, ngModel) {
+            element.bind('click', function() {
+                $http({
+                    url: 'http://www.desckie.com/iwantrent/deleteRental/',
+                    method: 'POST',
+                    params: {
+                        uuid : scope.project
+                    }
+                }).then(function (res) {
+                    if (res.data.status === 0) {
+                        scope.progress = res.data.body;
+                    } else {
+                        alert(res.data.body);
+                    }
+                }, function (res) {
+                    alert('error');
+                })
+            })
+        }
+    };
+}])
