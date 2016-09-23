@@ -12,3 +12,13 @@ appDirectives.directive('deleteIt',[function() {
         }
     };
 }])
+appDirectives.directive('release',[function() {
+    return {
+        restrict: 'AE',
+        link: function(scope, element, attrs) {
+            element.bind('click', function() {
+                $http()
+            })
+        }
+    };
+}])
