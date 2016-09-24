@@ -10,15 +10,6 @@ appDirectives.directive('deleteIt',[function() {
                 scope.$emit('loading', true);
             })
         }
-    };
-}])
-appDirectives.directive('release',[function() {
-    return {
-        restrict: 'AE',
-        link: function(scope, element, attrs) {
-            element.bind('click', function() {
-                $http()
-            })
-        }
-    };
-}])
+    }
+}]);
+

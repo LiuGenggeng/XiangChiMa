@@ -344,6 +344,38 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     width: 3rem;
     display: inline-block;
 }
-.weui_uploader_bd {
+.weui-uploader-bd {
+    position: relative;
+    width: 24.1%;
+    height: 10rem;
     display: inline-block;
+}
+.release_form .weui_uploader_input_wrp {
+    width: 100%;
+    height: 10rem;
+    margin-bottom: 0 !important;
+    background-color: #fff;
+    border: none !important;
+}
+.add_pic {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 70%;
+    color: #d9d9d9;
+    font-size: 0.8rem;
+}
+.pic_div img {
+    width: 100%;
+    height: 100%;
+}
+.delePic {
+    width: 1.6rem;
+    height: 1.5rem;
+    position: absolute;
+    bottom: 0.3rem;
+    right: 0.3rem;
+    background-image: url("../images/icon2.png") ;
+    background-size: 1.5rem;
+    background-repeat: no-repeat;
 }

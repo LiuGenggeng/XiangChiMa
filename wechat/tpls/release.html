@@ -1,4 +1,4 @@
-<form>
+<form class="release_form">
     <div class="weui_cell">
         <div class="weui_cell_bd weui_cell_primary  release_header">
             <p class="release_title">标题文字</p>
@@ -8,28 +8,32 @@
             <div class="weui_textarea_counter"><span ng-bind="Description.length"></span>/200</div>
         </div>
     </div>
-    <div class="weui_cell">
-        <div class="weui_cell_bd weui_cell_primary">
-            <div class="weui_uploader">
-                <div class="weui_uploader_bd">
-                    <div class="weui_uploader_input_wrp">
-                        <input class="weui_uploader_input" type="file" accept="image/*" multiple="">
-                    </div>
+
+    <!--上传图片-->
+    <div>
+        <div class="pic_div">
+            <div class="weui-uploader-bd" id="1">
+                <div class="weui_uploader_input_wrp">
+                    <input class="weui_uploader_input" type="file" accept="image/*" multiple="" onchange="angular.element(this).scope().addPic(this,1)">
+                    <span class="add_pic">添加图片</span>
                 </div>
-                <div class="weui_uploader_bd">
-                    <div class="weui_uploader_input_wrp">
-                        <input class="weui_uploader_input" type="file" accept="image/*" multiple="">
-                    </div>
+            </div>
+            <div class="weui-uploader-bd" id="2" >
+                <div class="weui_uploader_input_wrp" >
+                    <input class="weui_uploader_input" type="file" accept="image/*" multiple="" onchange="angular.element(this).scope().addPic(this,2)" >
+                    <span class="add_pic">添加图片</span>
                 </div>
-                <div class="weui_uploader_bd">
-                    <div class="weui_uploader_input_wrp">
-                        <input class="weui_uploader_input" type="file" accept="image/*" multiple="">
-                    </div>
+            </div>
+            <div class="weui-uploader-bd" id="3">
+                <div class="weui_uploader_input_wrp">
+                    <input class="weui_uploader_input" type="file" accept="image/*" multiple="" onchange="angular.element(this).scope().addPic(this,3)">
+                    <span class="add_pic">添加图片</span>
                 </div>
-                <div class="weui_uploader_bd">
-                    <div class="weui_uploader_input_wrp">
-                        <input class="weui_uploader_input" type="file" accept="image/*" multiple="">
-                    </div>
+            </div>
+            <div class="weui-uploader-bd" id="4">
+                <div class="weui_uploader_input_wrp">
+                    <input class="weui_uploader_input" type="file" accept="image/*" multiple="" onchange="angular.element(this).scope().addPic(this,4)">
+                    <span class="add_pic">添加图片</span>
                 </div>
             </div>
         </div>
