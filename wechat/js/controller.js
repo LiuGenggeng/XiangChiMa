@@ -57,14 +57,29 @@ appCtrls.controller('releaseCtrl',['$scope',
             {
                 var reader = new FileReader();
                 reader.onload = function(evt){
-                    prevDiv.innerHTML = '<img src="' + evt.target.result + '"/>'+'<span class="delePic"><span> ';
-                }
+                    document.getElementById(filename).parentNode.childNodes[5].style.display = "block";
+                    document.getElementById(filename).style.display = "block";
+                    document.getElementById(filename).style.height = "10rem";
+                    file.parentNode.style.height = "0";
+                    file.parentNode.style.opacity = "0";
+                    prevDiv.innerHTML = '<img src="' + evt.target.result + '" />';
+                    $scope.$apply()
+                };
                 reader.readAsDataURL(file.files[0]);
             }
             else
             {
                 prevDiv.innerHTML = '<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
             }
+        };
+        $scope.delePic = function(deleName) {
+            document.getElementById("dele-"+deleName).style.display = "none";
+            var deleDiv = document.getElementById(deleName);
+            deleDiv.style.display =  "none";
+            var addDiv = document.getElementById("add-"+deleName);
+            addDiv.getElementsByTagName("input")[0].value = '';
+            addDiv.style.height = "10rem";
+            addDiv.style.opacity = "1";
         }
     }
 ]);
