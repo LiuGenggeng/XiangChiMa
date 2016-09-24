@@ -1,46 +1,68 @@
-<div class="weui_cell">
-    <div class="weui_cell_bd weui_cell_primary  release_header">
-        <p class="release_title">标题文字</p>
-        <textarea class="weui_textarea" maxlength="30" placeholder="输入不超过30个字" rows="1"></textarea>
-        <p class="release_title release_description">描述物品</p>
-        <textarea class="weui_textarea" maxlength="200" placeholder="输入不超过200个字" rows="3"  ng-model="Description"></textarea>
-        <div class="weui_textarea_counter"><span ng-bind="Description.length"></span>/200</div>
-    </div>
-</div>
-<div class="weui_cell_bd weui_cell_primary">
-    <input type="file" file-model="myFile"/>
-    <div class="col-md-12">
-        <img ng-src="{{imageSrc}}" style="max-width:300px;max-height:300px;margin:0 auto;display:block;" />
-    </div>
-</div>
-<div class="weui_cell no_bottom">
-    <div class="weui_cell_bd weui_cell_primary release_much">
-        <div>
-            <input type="tel" ng-value="release_much"> <span class="unit">元/天</span>
-            <h3>租金</h3>
+<form>
+    <div class="weui_cell">
+        <div class="weui_cell_bd weui_cell_primary  release_header">
+            <p class="release_title">标题文字</p>
+            <textarea class="weui_textarea" maxlength="30" placeholder="输入不超过30个字" rows="1"></textarea>
+            <p class="release_title release_description">描述物品</p>
+            <textarea class="weui_textarea" maxlength="200" placeholder="输入不超过200个字" rows="3"  ng-model="Description"></textarea>
+            <div class="weui_textarea_counter"><span ng-bind="Description.length"></span>/200</div>
         </div>
     </div>
-    <div class="weui_cell_bd weui_cell_primary release_mortgage">
-        <div>
-            <input  type="tel" ng-value="release_mortgage"> <span class="unit">元</span>
-            <h3>押金</h3>
-        </div>
-    </div>
-</div>
-<div class="weui_cell weui_cells_checkbox no_top">
-    <label class="weui_cell weui_check_label mortgage_div" for="s11">
-        <div class="weui_cell_hd">
-            <input type="checkbox" class="weui_check" name="checkbox1" id="s11" ng-model="toggle_mortgage">
-            <i class="weui_icon_checked"></i>
-        </div>
+    <div class="weui_cell">
         <div class="weui_cell_bd weui_cell_primary">
-            <p ng-class="{'agree_content':!toggle_mortgage}" style="margin-left: 1.3rem">同意有效证件(学生证、身份证等),可抵适当押金</p>
-            <div class="input_mortgage" ng-show="toggle_mortgage">
-                请输入抵扣额度: <input type="tel" class="mortgage_input"/> 元
+            <div class="weui_uploader">
+                <div class="weui_uploader_bd">
+                    <div class="weui_uploader_input_wrp">
+                        <input class="weui_uploader_input" type="file" accept="image/*" multiple="">
+                    </div>
+                </div>
+                <div class="weui_uploader_bd">
+                    <div class="weui_uploader_input_wrp">
+                        <input class="weui_uploader_input" type="file" accept="image/*" multiple="">
+                    </div>
+                </div>
+                <div class="weui_uploader_bd">
+                    <div class="weui_uploader_input_wrp">
+                        <input class="weui_uploader_input" type="file" accept="image/*" multiple="">
+                    </div>
+                </div>
+                <div class="weui_uploader_bd">
+                    <div class="weui_uploader_input_wrp">
+                        <input class="weui_uploader_input" type="file" accept="image/*" multiple="">
+                    </div>
+                </div>
             </div>
         </div>
-    </label>
-</div>
-<div class="weui_cell weui_cell_primary">
-    <a href="javascript:;" class="weui_btn weui_btn_primary confirm_release" release>确认发布</a>
-</div>
+    </div>
+    <div class="weui_cell no_bottom">
+        <div class="weui_cell_bd weui_cell_primary release_much">
+            <div>
+                <input type="tel" ng-value="release_much"> <span class="unit">元/天</span>
+                <h3>租金</h3>
+            </div>
+        </div>
+        <div class="weui_cell_bd weui_cell_primary release_mortgage">
+            <div>
+                <input  type="tel" ng-value="release_mortgage"> <span class="unit">元</span>
+                <h3>押金</h3>
+            </div>
+        </div>
+    </div>
+    <div class="weui_cell weui_cells_checkbox no_top">
+        <label class="weui_cell weui_check_label mortgage_div" for="s11">
+            <div class="weui_cell_hd">
+                <input type="checkbox" class="weui_check" name="checkbox1" id="s11" ng-model="toggle_mortgage">
+                <i class="weui_icon_checked"></i>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <p ng-class="{'agree_content':!toggle_mortgage}" style="margin-left: 1.3rem">同意有效证件(学生证、身份证等),可抵适当押金</p>
+                <div class="input_mortgage" ng-show="toggle_mortgage">
+                    请输入抵扣额度: <input type="tel" class="mortgage_input"/> 元
+                </div>
+            </div>
+        </label>
+    </div>
+    <div class="weui_cell weui_cell_primary">
+        <a href="javascript:;" class="weui_btn weui_btn_primary confirm_release" release>确认发布</a>
+    </div>
+</form>

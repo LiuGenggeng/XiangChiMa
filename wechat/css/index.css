@@ -344,3 +344,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     width: 3rem;
     display: inline-block;
 }
+.weui_uploader_bd {
+    display: inline-block;
+}
