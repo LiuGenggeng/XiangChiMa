@@ -1,10 +1,10 @@
-<form class="release_form">
+<form class="release_form" name="release_form">
     <div class="weui_cell">
         <div class="weui_cell_bd weui_cell_primary  release_header">
             <p class="release_title">标题文字</p>
-            <textarea class="weui_textarea" maxlength="30" placeholder="输入不超过30个字" rows="1"></textarea>
+            <textarea class="weui_textarea" maxlength="30" placeholder="输入不超过30个字" rows="1" name="product_name" required></textarea>
             <p class="release_title release_description">描述物品</p>
-            <textarea class="weui_textarea" maxlength="200" placeholder="输入不超过200个字" rows="3"  ng-model="Description"></textarea>
+            <textarea class="weui_textarea" maxlength="200" placeholder="输入不超过200个字" rows="3"  ng-model="Description" name="description" required></textarea>
             <div class="weui_textarea_counter"><span ng-bind="Description.length"></span>/200</div>
         </div>
     </div>
@@ -49,13 +49,13 @@
     <div class="weui_cell no_bottom">
         <div class="weui_cell_bd weui_cell_primary release_much">
             <div>
-                <input type="tel" ng-value="release_much"> <span class="unit">元/天</span>
+                <input type="tel" ng-value="release_much" name="price" required> <span class="unit">元/天</span>
                 <h3>租金</h3>
             </div>
         </div>
         <div class="weui_cell_bd weui_cell_primary release_mortgage">
             <div>
-                <input  type="tel" ng-value="release_mortgage"> <span class="unit">元</span>
+                <input  type="tel" ng-value="release_mortgage" name="deposit" required> <span class="unit">元</span>
                 <h3>押金</h3>
             </div>
         </div>
@@ -69,12 +69,12 @@
             <div class="weui_cell_bd weui_cell_primary">
                 <p ng-class="{'agree_content':!toggle_mortgage}" style="margin-left: 1.3rem">同意有效证件(学生证、身份证等),可抵适当押金</p>
                 <div class="input_mortgage" ng-show="toggle_mortgage">
-                    请输入抵扣额度: <input type="tel" class="mortgage_input"/> 元
+                    请输入抵扣额度: <input type="tel" class="mortgage_input" name="cardFree"/> 元
                 </div>
             </div>
         </label>
     </div>
     <div class="weui_cell weui_cell_primary">
-        <a href="javascript:;" class="weui_btn weui_btn_primary confirm_release" release>确认发布</a>
+        <input value="确认发布" ng-disabled="release_form.$invalid" type="submit" class="weui_btn weui_btn_primary confirm_release" release>
     </div>
 </form>

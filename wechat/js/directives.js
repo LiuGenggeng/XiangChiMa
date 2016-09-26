@@ -59,11 +59,28 @@ appDirectives.directive('itemDetail',['$http',function($http) {
 /****************************/
 /***发布指令***/
 /****************************/
-appDirectives.directive('itemDetail',['$http',function($http) {
+appDirectives.directive('release',['$http',function($http) {
     return {
         restrict: 'AE',
         link: function(scope, element, attrs) {
-            element.bind('')
+            element.bind('click',function() {
+                var myForm = document.getElementsByClassName("release_form");
+                $http({
+                    url: '/iwantrent/getProductInfo/',
+                    method: 'GET',
+                    params: {
+
+                    }
+                }).then(function (res) {
+                    if (res.data.flag === 0) {
+                        scope.lists = res.data.boty;
+                    } else {
+                        alert(res.data.body);
+                    }
+                }, function () {
+                    alert('error');
+                })
+            })
         }
     }
 }]);
