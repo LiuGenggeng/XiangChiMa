@@ -10,6 +10,9 @@ app.run(['$location','$rootScope',function($location, $rootScope){
     });
 }]);
 var appCtrls = angular.module('appCtrls',[]);
+/****************************/
+/***商品列表控制器***/
+/****************************/
 appCtrls.controller('releaseListCtrl',['$scope',
     function ($scope) {
         $scope.lists = [
@@ -20,6 +23,9 @@ appCtrls.controller('releaseListCtrl',['$scope',
         ];
     }
 ]);
+/****************************/
+/***我的发布控制器***/
+/****************************/
 appCtrls.controller('myReleaseCtrl',['$scope',
     function ($scope) {
         $scope.toggle = false;
@@ -44,6 +50,9 @@ appCtrls.controller('myReleaseCtrl',['$scope',
         });
     }
 ]);
+/****************************/
+/***发布控制器***/
+/****************************/
 appCtrls.controller('releaseCtrl',['$scope',
     function ($scope) {
         $scope.imageSrc = "";
@@ -83,6 +92,9 @@ appCtrls.controller('releaseCtrl',['$scope',
         }
     }
 ]);
+/****************************/
+/***物品详情控制器***/
+/****************************/
 appCtrls.controller('itemDetailsCtrl',['$scope',
     function ($scope) {
         $scope.toggle = false;
