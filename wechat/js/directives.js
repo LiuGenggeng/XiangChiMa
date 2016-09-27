@@ -13,9 +13,31 @@ appDirectives.directive('deleteIt',[function() {
     }
 }]);
 /****************************/
-/***我的发布指令***/
+/***商品列表指令***/
 /****************************/
 appDirectives.directive('releaseList',['$http',function($http) {
+    return {
+        restrict: 'AE',
+        link: function(scope, element, attrs) {
+            $http.jsonp({
+                url: 'http://www.desckie.com/iwantrent/getAllProduct/'
+            }).success(function (res) {
+                if (res.flag === true) {
+                    scope.lists = res.data;
+                } else {
+                    alert("error");
+                }
+            }, function () {
+                alert('error');
+            })
+        }
+    }
+}]);
+
+/****************************/
+/***我的发布指令***/
+/****************************/
+appDirectives.directive('myRelease',['$http',function($http) {
     return {
         restrict: 'AE',
         link: function(scope, element, attrs) {
@@ -34,6 +56,7 @@ appDirectives.directive('releaseList',['$http',function($http) {
         }
     }
 }]);
+
 /****************************/
 /***物品详情指令***/
 /****************************/
@@ -56,6 +79,7 @@ appDirectives.directive('itemDetail',['$http',function($http) {
         }
     }
 }]);
+
 /****************************/
 /***发布指令***/
 /****************************/
