@@ -19,9 +19,10 @@ appDirectives.directive('releaseList',['$http',function($http) {
     return {
         restrict: 'AE',
         link: function(scope, element, attrs) {
-            $http.jsonp({
-                url: '/iwantrent/getAllProduct/'
-            }).success(function (res) {
+            $http({
+                url: '/iwantrent/getAllProduct/',
+                method: 'GET'
+            }).then(function (res) {
                 if (res.flag === true) {
                     scope.lists = res.data;
                 } else {
@@ -45,10 +46,10 @@ appDirectives.directive('myRelease',['$http',function($http) {
                 url: '/iwantrent/getMyRental/',
                 method: 'GET'
             }).then(function (res) {
-                if (res.data.flag === 0) {
-                    scope.lists = res.data.boty;
+                if (res.flag === true) {
+                    scope.lists = res.data;
                 } else {
-                    alert(res.data.body);
+                    alert("error");
                 }
             }, function () {
                 alert('error');
@@ -66,12 +67,21 @@ appDirectives.directive('itemDetail',['$http',function($http) {
         link: function(scope, element, attrs) {
             $http({
                 url: '/iwantrent/getProductInfo/',
-                method: 'GET'
+                method: 'GET',
+                param: {
+                    uuid:attrs.uuid
+                }
             }).then(function (res) {
-                if (res.data.flag === 0) {
-                    scope.lists = res.data.boty;
+                if (res.flag === 0) {
+                    scope.publish_date = res.data.publish_date;
+                    scope.price        = res.data.price;
+                    scope.product_name = res.data.product_name;
+                    scope.deposit      = res.data.deposit;
+                    scope.cardFree     = res.data.cardFree;
+                    scope.renter       = res.data.renter;
+                    scope.description  = res.data.description;
                 } else {
-                    alert(res.data.body);
+                    alert("error");
                 }
             }, function () {
                 alert('error');
@@ -88,18 +98,17 @@ appDirectives.directive('release',['$http',function($http) {
         restrict: 'AE',
         link: function(scope, element, attrs) {
             element.bind('click',function() {
-                var myForm = document.getElementsByClassName("release_form");
                 $http({
-                    url: '/iwantrent/getProductInfo/',
-                    method: 'GET',
+                    url: '/iwantrent/releaseRental/',
+                    method: 'POST',
                     params: {
 
                     }
                 }).then(function (res) {
-                    if (res.data.flag === 0) {
-                        scope.lists = res.data.boty;
+                    if (res.flag === true) {
+                        alert("发布成功")
                     } else {
-                        alert(res.data.body);
+                        alert(res.data);
                     }
                 }, function () {
                     alert('error');

@@ -16,7 +16,7 @@ var appCtrls = angular.module('appCtrls',[]);
 appCtrls.controller('releaseListCtrl',['$scope',
     function ($scope) {
         $scope.lists = [
-            {'card':'8','cardCash':'10','id':'1','product_name':'Giant 自行车','description':'出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆','images':'','time':'刚刚','much':'30元/天','mortgage':"10"}
+            {'cardFree':'10','id':'1','product_name':'Giant 自行车','description':'','thumbnail':[],'publish_date':'刚刚','price':'30元/天','deposit':"10"}
         ]
     }
 ]);
@@ -28,10 +28,7 @@ appCtrls.controller('myReleaseCtrl',['$scope',
         $scope.toggle = false;
         $scope.loading = false;
         $scope.lists = [
-            {'card':'8','cardCash':'10','id':'1','name':'Giant 自行车','description':'出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆','images':'','time':'刚刚','much':'30元/天','mortgage':"10"},
-            {'id':'2','name':'Giant 自行车','description':'出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆','images':'','time':'刚刚','much':'30元/天','mortgage':"10"},
-            {'id':'3','name':'Giant 自行车','description':'出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆','images':'','time':'刚刚','much':'30元/天','mortgage':"10"},
-            {'id':'4','name':'Giant 自行车','description':'出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆出租车辆','images':'','time':'刚刚','much':'30元/天','mortgage':"10"}
+            {'cardFree':'10','id':'1','product_name':'Giant 自行车','description':'','thumbnail':[],'publish_date':'刚刚','price':'30元/天','deposit':"10"}
         ];
         $scope.zu = function() {
             $scope.toggle = !$scope.toggle;
@@ -95,13 +92,12 @@ appCtrls.controller('releaseCtrl',['$scope',
 appCtrls.controller('itemDetailsCtrl',['$scope',
     function ($scope) {
         $scope.toggle = false;
-        $scope.time = '今天14:30发布';
-        $scope.much = '34';
-        $scope.title = 'TENTX 舒适型个人帐篷';
-        $scope.mortgage = '10';
-        $scope.card = '1';
-        $scope.cardCash = '8';
-        $scope.link = '14743163347';
+        $scope.publish_date = '今天14:30发布';
+        $scope.price = '34';
+        $scope.product_name = 'TENTX 舒适型个人帐篷';
+        $scope.deposit = '10';
+        $scope.cardFree = '8';
+        $scope.renter = '14743163347';
         $scope.description = '出租TENTX品牌舒适型个人帐篷意见，可长时间租用，个人爱护的比I啊哦好，9新，可给需要户外旅游的人事租用';
         $scope.zu = function() {
             $scope.toggle = !$scope.toggle;
