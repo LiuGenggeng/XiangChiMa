@@ -20,7 +20,7 @@ appDirectives.directive('releaseList',['$http',function($http) {
         restrict: 'AE',
         link: function(scope, element, attrs) {
             $http.jsonp({
-                url: 'http://www.desckie.com/iwantrent/getAllProduct/'
+                url: '/iwantrent/getAllProduct/'
             }).success(function (res) {
                 if (res.flag === true) {
                     scope.lists = res.data;
