@@ -19,18 +19,15 @@ appDirectives.directive('releaseList',['$http',function($http) {
     return {
         restrict: 'AE',
         link: function(scope, element, attrs) {
-            $http({
-                url: '/iwantrent/getAllProduct/',
-                method: 'GET'
-            }).then(function (res) {
-                if (res.flag === true) {
+            $http.get('https://www.desckie.com/iwantrent/getAllProduct/').success(function(res) {
+                if(res.flag === true) {
                     scope.lists = res.data;
-                } else {
-                    alert("error");
+                }else{
+                    alert("error")
                 }
-            }, function () {
-                alert('error');
-            })
+            }).error(function() {
+                alert("error")
+            });
         }
     }
 }]);
@@ -42,17 +39,14 @@ appDirectives.directive('myRelease',['$http',function($http) {
     return {
         restrict: 'AE',
         link: function(scope, element, attrs) {
-            $http({
-                url: '/iwantrent/getMyRental/',
-                method: 'GET'
-            }).then(function (res) {
+            $http.get('https://www.desckie.com/iwantrent/getMyRental/').success(function(res) {
                 if (res.flag === true) {
                     scope.lists = res.data;
                 } else {
-                    alert("error");
+                    alert(res.message);
                 }
-            }, function () {
-                alert('error');
+            }).error(function() {
+                alert("error")
             })
         }
     }
@@ -65,14 +59,8 @@ appDirectives.directive('itemDetail',['$http',function($http) {
     return {
         restrict: 'AE',
         link: function(scope, element, attrs) {
-            $http({
-                url: '/iwantrent/getProductInfo/',
-                method: 'GET',
-                param: {
-                    uuid:attrs.uuid
-                }
-            }).then(function (res) {
-                if (res.flag === 0) {
+            $http.post('https://www.desckie.com/iwantrent/getProductInfo/',{param:{uuid:""}}).success(function(res) {
+                if (res.flag === true) {
                     scope.publish_date = res.data.publish_date;
                     scope.price        = res.data.price;
                     scope.product_name = res.data.product_name;
@@ -81,10 +69,10 @@ appDirectives.directive('itemDetail',['$http',function($http) {
                     scope.renter       = res.data.renter;
                     scope.description  = res.data.description;
                 } else {
-                    alert("error");
+                    alert(res.message)
                 }
-            }, function () {
-                alert('error');
+            }).error(function() {
+                alert("error")
             })
         }
     }
@@ -98,20 +86,14 @@ appDirectives.directive('release',['$http',function($http) {
         restrict: 'AE',
         link: function(scope, element, attrs) {
             element.bind('click',function() {
-                $http({
-                    url: '/iwantrent/releaseRental/',
-                    method: 'POST',
-                    params: {
-
-                    }
-                }).then(function (res) {
+                $http.post('http://www.desckie.com/iwantrent/releaseRental/',{param:{}}).success(function(res) {
                     if (res.flag === true) {
                         alert("发布成功")
                     } else {
-                        alert(res.data);
+                        alert(res.message)
                     }
-                }, function () {
-                    alert('error');
+                }).error(function() {
+                    alert("error")
                 })
             })
         }
