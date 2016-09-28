@@ -15,6 +15,26 @@ appDirectives.directive('deleteIt',[function() {
 /****************************/
 /***商品列表指令***/
 /****************************/
+appDirectives.directive('shouQuan',['$http',function($http) {
+    return {
+        restrict: 'AE',
+        link: function(scope, element, attrs) {
+            $http.get('https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect').success(function(res) {
+                if(res.flag === true) {
+                    scope.lists = res.data;
+                }else{
+                    alert("error")
+                }
+            }).error(function() {
+                alert("error")
+            });
+        }
+    }
+}]);
+
+/****************************/
+/***商品列表指令***/
+/****************************/
 appDirectives.directive('releaseList',['$http',function($http) {
     return {
         restrict: 'AE',
