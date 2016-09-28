@@ -106,7 +106,14 @@ appDirectives.directive('release',['$http',function($http) {
         restrict: 'AE',
         link: function(scope, element, attrs) {
             element.bind('click',function() {
-                $http.post('http://www.desckie.com/iwantrent/releaseRental/',{param:{}}).success(function(res) {
+                /*var product_name = document.querySelector(".product_name_1").value;
+                var description  = document.querySelector(".product_name-2").value;
+                var price        = document.querySelector(".price").value;
+                var deposit      = document.querySelector(".deposit").value;
+
+                $http.post('http://www.desckie.com/iwantrent/releaseRental/',{param:{
+
+                }}).success(function(res) {
                     if (res.flag === true) {
                         alert("发布成功")
                     } else {
@@ -114,7 +121,8 @@ appDirectives.directive('release',['$http',function($http) {
                     }
                 }).error(function() {
                     alert("error")
-                })
+                })*/
+                /*document.querySelector(".release_form").submit();*/
             })
         }
     }

@@ -1,10 +1,10 @@
-<form class="release_form" name="release_form">
+<form class="release_form" name="release_form" method="post" action="http://www.desckie.com/iwantrent/releaseRental/">
     <div class="weui_cell">
         <div class="weui_cell_bd weui_cell_primary  release_header">
             <p class="release_title">标题文字</p>
-            <textarea class="weui_textarea" maxlength="30" placeholder="输入不超过30个字" rows="1" name="product_name" required></textarea>
+            <textarea class="weui_textarea weui_textarea_1" maxlength="30" placeholder="输入不超过30个字" rows="1" name="product_name" required></textarea>
             <p class="release_title release_description">描述物品</p>
-            <textarea class="weui_textarea" maxlength="200" placeholder="输入不超过200个字" rows="3"  ng-model="Description" name="description" required></textarea>
+            <textarea class="weui_textarea weui_textarea_2" maxlength="200" placeholder="输入不超过200个字" rows="3"  ng-model="Description" name="description" required></textarea>
             <div class="weui_textarea_counter"><span ng-bind="Description.length"></span>/200</div>
         </div>
     </div>
@@ -15,7 +15,7 @@
             <div class="weui-uploader-bd">
                 <div class="picDiv" id="1"></div>
                 <div class="weui_uploader_input_wrp" id="add-1">
-                    <input class="weui_uploader_input" type="file" accept="image/*" multiple="" onchange="angular.element(this).scope().addPic(this,1)">
+                    <input name="pic_1" class="weui_uploader_input" type="file" accept="image/*" multiple="" onchange="angular.element(this).scope().addPic(this,1)">
                     <span class="add_pic">添加图片</span>
                 </div>
                 <span class="delePic" ng-click="delePic(1)" id="dele-1"></span>
@@ -23,7 +23,7 @@
             <div class="weui-uploader-bd">
                 <div class="picDiv" id="2"></div>
                 <div class="weui_uploader_input_wrp" id="add-2">
-                    <input class="weui_uploader_input" type="file" accept="image/*" multiple="" onchange="angular.element(this).scope().addPic(this,2)" >
+                    <input name="pic_2" class="weui_uploader_input" type="file" accept="image/*" multiple="" onchange="angular.element(this).scope().addPic(this,2)" >
                     <span class="add_pic">添加图片</span>
                 </div>
                 <span class="delePic" ng-click="delePic(2)" id="dele-2"></span>
@@ -31,7 +31,7 @@
             <div class="weui-uploader-bd">
                 <div class="picDiv" id="3"></div>
                 <div class="weui_uploader_input_wrp" id="add-3">
-                    <input class="weui_uploader_input" type="file" accept="image/*" multiple="" onchange="angular.element(this).scope().addPic(this,3)">
+                    <input name="pic_3" class="weui_uploader_input" type="file" accept="image/*" multiple="" onchange="angular.element(this).scope().addPic(this,3)">
                     <span class="add_pic">添加图片</span>
                 </div>
                 <span class="delePic" ng-click="delePic(3)" id="dele-3"></span>
@@ -39,7 +39,7 @@
             <div class="weui-uploader-bd">
                 <div class="picDiv" id="4"></div>
                 <div class="weui_uploader_input_wrp" id="add-4">
-                    <input class="weui_uploader_input" type="file" accept="image/*" multiple="" onchange="angular.element(this).scope().addPic(this,4)">
+                    <input name="pic_4" class="weui_uploader_input" type="file" accept="image/*" multiple="" onchange="angular.element(this).scope().addPic(this,4)">
                     <span class="add_pic">添加图片</span>
                 </div>
                 <span class="delePic" ng-click="delePic(4)" id="dele-4"></span>
@@ -49,13 +49,13 @@
     <div class="weui_cell no_bottom">
         <div class="weui_cell_bd weui_cell_primary release_much">
             <div>
-                <input type="tel" ng-value="release_much" name="price" required> <span class="unit">元/天</span>
+                <input type="tel" class="price" ng-value="release_much" name="price" required> <span class="unit">元/天</span>
                 <h3>租金</h3>
             </div>
         </div>
         <div class="weui_cell_bd weui_cell_primary release_mortgage">
             <div>
-                <input  type="tel" ng-value="release_mortgage" name="deposit" required> <span class="unit">元</span>
+                <input  type="tel" class="deposit" ng-value="release_mortgage" name="deposit" required> <span class="unit">元</span>
                 <h3>押金</h3>
             </div>
         </div>
