@@ -101,12 +101,12 @@ appDirectives.directive('itemDetail',['$http',function($http) {
 /****************************/
 /***发布指令***/
 /****************************/
-appDirectives.directive('release',['$http',function($http) {
+/*appDirectives.directive('release',['$http',function($http) {
     return {
         restrict: 'AE',
         link: function(scope, element, attrs) {
             element.bind('click',function() {
-                /*var product_name = document.querySelector(".product_name_1").value;
+                /!*var product_name = document.querySelector(".product_name_1").value;
                 var description  = document.querySelector(".product_name-2").value;
                 var price        = document.querySelector(".price").value;
                 var deposit      = document.querySelector(".deposit").value;
@@ -121,10 +121,10 @@ appDirectives.directive('release',['$http',function($http) {
                     }
                 }).error(function() {
                     alert("error")
-                })*/
-                /*document.querySelector(".release_form").submit();*/
+                })*!/
+                /!*document.querySelector(".release_form").submit();*!/
             })
         }
     }
-}]);
+}]);*/
 
