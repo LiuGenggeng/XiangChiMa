@@ -89,30 +89,9 @@ appCtrls.controller('releaseCtrl',['$scope',
 /****************************/
 /*发布表单提交及上传图片控制器*/
 /****************************/
-appCtrls.controller('upLoadFile',['$scope','Upload',
+appCtrls.controller('upLoadFile',['$scope',
     function ($scope,Upload) {
-        $scope.uploadImg = '';
-        //提交
-        $scope.submit = function () {
-            $scope.upload($scope.file);
-        };
-        $scope.upload = function (file) {
-            $scope.fileInfo = file;
-            Upload.upload({
-                //服务端接收
-                url: 'http://www.desckie.com/iwantrent/releaseRental/',
-                //上传的同时带的参数
-                data: { product_name: "Giant" },
-                file: file
-            }).success(function (data, status, headers, config) {
-                //上传成功
-                console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
-                $scope.uploadImg = data;
-            }).error(function (data, status, headers, config) {
-                //上传失败
-                console.log('error status: ' + status);
-            });
-        };
+
     }
 ]);
 /****************************/
