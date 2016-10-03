@@ -54,44 +54,66 @@ appCtrls.controller('releaseCtrl',['$scope',
         $scope.Description = '';
         $scope.release_much = '0';
         $scope.release_mortgage = '0';
-        $scope.addPic = function(file,filename) {
-            var prevDiv = document.getElementById(filename);
-            if (file.files && file.files[0])
-            {
-                var reader = new FileReader();
-                reader.onload = function(evt){
-                    document.getElementById(filename).parentNode.childNodes[5].style.display = "block";
-                    document.getElementById(filename).style.display = "block";
-                    document.getElementById(filename).style.height = "10rem";
-                    file.parentNode.style.height = "0";
-                    file.parentNode.style.opacity = "0";
-                    prevDiv.innerHTML = '<img src="' + evt.target.result + '" />';
-                    $scope.$apply()
-                };
-                reader.readAsDataURL(file.files[0]);
-            }
-            else
-            {
-                prevDiv.innerHTML = '<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
-            }
-        };
-        $scope.delePic = function(deleName) {
-            document.getElementById("dele-"+deleName).style.display = "none";
-            var deleDiv = document.getElementById(deleName);
-            deleDiv.style.display =  "none";
-            var addDiv = document.getElementById("add-"+deleName);
-            addDiv.getElementsByTagName("input")[0].value = '';
-            addDiv.style.height = "10rem";
-            addDiv.style.opacity = "1";
-        }
     }
 ]);
 /****************************/
 /*发布表单提交及上传图片控制器*/
 /****************************/
-appCtrls.controller('upLoadFile',['$scope',
-    function ($scope,Upload) {
+appCtrls.controller('AppController',['$scope','FileUploader',
+    function ($scope,FileUploader) {
+        var uploader = $scope.uploader = new FileUploader({
+            url: 'http://www.desckie.com/iwantrent/releaseRental/',
+            formData:$(".release_form").serialize(),
+            withcredentials: true
+        });
 
+        // FILTERS
+
+        uploader.filters.push({
+            name: 'imageFilter',
+            fn: function(item /*{File|FileLikeObject}*/, options) {
+                var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+                return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+            }
+        });
+
+        // CALLBACKS
+
+        uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
+            console.info('onWhenAddingFileFailed', item, filter, options);
+        };
+        uploader.onAfterAddingFile = function(fileItem) {
+            console.info('onAfterAddingFile', fileItem);
+        };
+        uploader.onAfterAddingAll = function(addedFileItems) {
+            console.info('onAfterAddingAll', addedFileItems);
+        };
+        uploader.onBeforeUploadItem = function(item) {
+            console.info('onBeforeUploadItem', item);
+        };
+        uploader.onProgressItem = function(fileItem, progress) {
+            console.info('onProgressItem', fileItem, progress);
+        };
+        uploader.onProgressAll = function(progress) {
+            console.info('onProgressAll', progress);
+        };
+        uploader.onSuccessItem = function(fileItem, response, status, headers) {
+            console.info('onSuccessItem', fileItem, response, status, headers);
+        };
+        uploader.onErrorItem = function(fileItem, response, status, headers) {
+            console.info('onErrorItem', fileItem, response, status, headers);
+        };
+        uploader.onCancelItem = function(fileItem, response, status, headers) {
+            console.info('onCancelItem', fileItem, response, status, headers);
+        };
+        uploader.onCompleteItem = function(fileItem, response, status, headers) {
+            console.info('onCompleteItem', fileItem, response, status, headers);
+        };
+        uploader.onCompleteAll = function() {
+            console.info('onCompleteAll');
+        };
+
+        console.info('uploader', uploader);
     }
 ]);
 /****************************/
