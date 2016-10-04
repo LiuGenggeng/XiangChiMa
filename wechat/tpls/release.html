@@ -2,7 +2,7 @@
     <div class="weui_cell">
         <div class="weui_cell_bd weui_cell_primary  release_header">
             <p class="release_title">标题文字</p>
-            <textarea class="weui_textarea weui_textarea_1" maxlength="30" placeholder="输入不超过30个字" rows="1" name="product_name" required></textarea>
+            <textarea class="weui_textarea weui_textarea_1" maxlength="30" placeholder="输入不超过30个字" rows="1" name="product_name" ng-model="porduct_name" required></textarea>
             <p class="release_title release_description">描述物品</p>
             <textarea class="weui_textarea weui_textarea_2" maxlength="200" placeholder="输入不超过200个字" rows="3"  ng-model="Description" name="description" required></textarea>
             <div class="weui_textarea_counter"><span ng-bind="Description.length"></span>/200</div>
@@ -37,7 +37,7 @@
                 <div class="col-md-3"  ng-show="uploader.queue.length<4">
                     <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
                     <div class="weui_uploader_input_wrp">
-                        <input name="pic_1" nv-file-select="" uploader="uploader" class="weui_uploader_input" type="file" accept="image/*" multiple required>
+                        <input name="pic_1" nv-file-select="" uploader="uploader" class="weui_uploader_input" type="file" accept="image/*" multiple />
                         <span class="add_pic">添加图片</span>
                     </div>
                 </div>
@@ -51,13 +51,13 @@
     <div class="weui_cell no_bottom">
         <div class="weui_cell_bd weui_cell_primary release_much">
             <div>
-                <input type="tel" class="price" ng-value="release_much" name="price" required> <span class="unit">元/天</span>
+                <input type="tel" class="price" ng-value="release_much" ng-model="release_much" name="price" required /> <span class="unit">元/天</span>
                 <h3>租金</h3>
             </div>
         </div>
         <div class="weui_cell_bd weui_cell_primary release_mortgage">
             <div>
-                <input  type="tel" class="deposit" ng-value="release_mortgage" name="deposit" required> <span class="unit">元</span>
+                <input  type="tel" class="deposit" ng-value="release_mortgage" ng-model="release_mortgage" name="deposit" required /> <span class="unit">元</span>
                 <h3>押金</h3>
             </div>
         </div>
@@ -65,7 +65,7 @@
     <div class="weui_cell weui_cells_checkbox no_top">
         <label class="weui_cell weui_check_label mortgage_div" for="s11">
             <div class="weui_cell_hd">
-                <input type="checkbox" class="weui_check" name="checkbox1" id="s11" ng-model="toggle_mortgage">
+                <input type="checkbox" class="weui_check" name="checkbox1" id="s11" ng-model="toggle_mortgage"/>
                 <i class="weui_icon_checked"></i>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
@@ -77,6 +77,6 @@
         </label>
     </div>
     <div class="weui_cell weui_cell_primary">
-        <input value="确认发布" ng-disabled="release_form.$invalid" type="button" ng-click="uploader.uploadAll()" class="weui_btn weui_btn_primary confirm_release" >
+        <input value="确认发布" ng-disabled="release_form.$invalid || uploader.queue.length==0" type="button" ng-click="uploader.uploadAll()" class="weui_btn weui_btn_primary confirm_release" />
     </div>
 </form>

@@ -54,6 +54,7 @@ appCtrls.controller('releaseCtrl',['$scope',
         $scope.Description = '';
         $scope.release_much = '0';
         $scope.release_mortgage = '0';
+        $scope.product_name = ''
     }
 ]);
 /****************************/
@@ -63,8 +64,7 @@ appCtrls.controller('AppController',['$scope','FileUploader',
     function ($scope,FileUploader) {
         var uploader = $scope.uploader = new FileUploader({
             url: 'http://www.desckie.com/iwantrent/releaseRental/',
-            formData:$(".release_form").serialize(),
-            withcredentials: true
+            withCredentials: true
         });
 
         // FILTERS
@@ -89,6 +89,13 @@ appCtrls.controller('AppController',['$scope','FileUploader',
             console.info('onAfterAddingAll', addedFileItems);
         };
         uploader.onBeforeUploadItem = function(item) {
+            item.formData = {
+                product_name: $(".weui_textarea_1").val(),
+                description: $(".weui_textarea_2").val(),
+                price: $(".price").val(),
+                deposit: $(".deposit").val(),
+                cardFree: $(".mortgage_input").val()
+            };
             console.info('onBeforeUploadItem', item);
         };
         uploader.onProgressItem = function(fileItem, progress) {
