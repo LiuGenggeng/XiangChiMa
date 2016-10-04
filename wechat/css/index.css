@@ -160,6 +160,7 @@ body {
     max-height: 100%;
 }
 .list-description {
+    width: 12rem;
     padding: 1rem;
     float: left;
 }

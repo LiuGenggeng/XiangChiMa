@@ -16,7 +16,7 @@ var appCtrls = angular.module('appCtrls',[]);
 appCtrls.controller('releaseListCtrl',['$scope',
     function ($scope) {
         $scope.lists = [
-            {'cardFree':'10','id':'1','product_name':'Giant 自行车','description':'','thumbnail':'','publish_date':'刚刚','price':'30元/天','deposit':"10"}
+            {'cardFree':'10','id':'1','product_name':'Giant 自行车','description':'','thumbnail':[],'publish_date':'刚刚','price':'30元/天','deposit':"10"}
         ]
     }
 ]);
@@ -28,7 +28,7 @@ appCtrls.controller('myReleaseCtrl',['$scope',
         $scope.toggle = false;
         $scope.loading = false;
         $scope.lists = [
-            {'cardFree':'10','id':'1','product_name':'Giant 自行车','description':'','thumbnail':'','publish_date':'刚刚','price':'30元/天','deposit':"10"}
+            {'cardFree':'10','id':'1','product_name':'Giant 自行车','description':'','thumbnail':[],'publish_date':'刚刚','price':'30元/天','deposit':"10"}
         ];
         $scope.zu = function() {
             $scope.toggle = !$scope.toggle;

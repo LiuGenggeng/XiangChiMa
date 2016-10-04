@@ -2,12 +2,25 @@
  * Created by Administrator on 2016/9/19.
  */
 var appDirectives = angular.module('appDirectives',[]);
-appDirectives.directive('deleteIt',[function() {
+/****************************/
+/***删除发布物品指令***/
+/****************************/
+appDirectives.directive('deleteIt',['$http',function($http) {
     return {
         restrict: 'AE',
         link: function(scope, element, attrs) {
             element.bind('click', function() {
                 scope.$emit('loading', true);
+                $http.post('http://www.desckie.com/iwantrent/deleteRental/',{param:{uuid:"1"}}).success(function(res) {
+                    if(res.flag === true) {
+                        alert("删除成功");
+                        window.location.reload()
+                    }else{
+                        alert("error")
+                    }
+                }).error(function() {
+                    alert("error")
+                });
             })
         }
     }

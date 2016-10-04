@@ -3,7 +3,7 @@
         <div ng-repeat="list in lists" class="list" id="{{list.id}}">
             <div class="list-top">
                 <div class="list-img">
-                    <img ng-src="list.thumbnail" alt="照片">
+                    <img ng-src="{{list.thumbnail[0]}}" alt="照片">
                 </div>
                 <div class="list-description">
                     <h3 ng-bind="list.product_name"></h3>
