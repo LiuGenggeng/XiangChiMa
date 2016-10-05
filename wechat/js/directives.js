@@ -2,6 +2,7 @@
  * Created by Administrator on 2016/9/19.
  */
 var appDirectives = angular.module('appDirectives',[]);
+var login = false;
 /****************************/
 /***删除发布物品指令***/
 /****************************/
@@ -114,7 +115,7 @@ appDirectives.directive('itemDetail',['$http',function($http) {
 /****************************/
 /***发布指令***/
 /****************************/
-appDirectives.directive('ngThumb', ['$window', function($window) {
+appDirectives.directive('ngThumb', ['$http','$window', function($http,$window) {
     var helper = {
         support: !!($window.FileReader && $window.CanvasRenderingContext2D),
         isFile: function(item) {
@@ -159,7 +160,7 @@ appDirectives.directive('ngThumb', ['$window', function($window) {
     };
 }]);
 /****************************/
-/***输入不许为空，不许小于0指令***/
+/**输入不许为空，不许小于0指令**/
 /****************************/
 appDirectives.directive('noZero', [function() {
     return {
@@ -176,3 +177,18 @@ appDirectives.directive('noZero', [function() {
         }
     };
 }]);
+/****************************/
+/**判断是否为登录指令**/
+/****************************/
+/*
+appDirectives.directive('ifLogin', [function() {
+    return {
+        restrict: 'AE',
+        link: function(scope,element, attributes) {
+            /!***判断是否登录***!/
+            if(login == false) {
+                scope.goLogin()
+            }
+        }
+    };
+}]);*/

@@ -4,9 +4,17 @@
 /****************************/
 /***不同页面设置不同的title***/
 /****************************/
-app.run(['$location','$rootScope',function($location, $rootScope){
+app.run(['$location','$rootScope','$state',function($location, $rootScope,$state){
     $rootScope.$on('$stateChangeSuccess', function (event, toState) {
-        $rootScope.title = toState.title
+        $rootScope.title = toState.title;
+        if($location.path() == "/release") {
+            console.log($location.path());
+            if(login == false) {
+                $state.go('releaseList')
+            }
+        }else {
+            console.log($location.path());
+        }
     });
 }]);
 var appCtrls = angular.module('appCtrls',[]);
@@ -61,8 +69,11 @@ appCtrls.controller('releaseCtrl',['$scope',
 /****************************/
 /*发布表单提交及上传图片控制器*/
 /****************************/
-appCtrls.controller('AppController',['$scope','FileUploader',
-    function ($scope,FileUploader) {
+appCtrls.controller('AppController',['$scope','FileUploader','$location',
+    function ($scope,FileUploader,$location) {
+        /*$scope.goLogin = function() {
+            $location.path("/releaseList")
+        };*/
         var uploader = $scope.uploader = new FileUploader({
             url: 'http://www.desckie.com/iwantrent/releaseRental/',
             withCredentials: true
