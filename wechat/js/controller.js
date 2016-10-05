@@ -54,7 +54,8 @@ appCtrls.controller('releaseCtrl',['$scope',
         $scope.Description = '';
         $scope.release_much = '0';
         $scope.release_mortgage = '0';
-        $scope.product_name = ''
+        $scope.product_name = '';
+        $scope.mortgage_input = '0'
     }
 ]);
 /****************************/

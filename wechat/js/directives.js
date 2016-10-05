@@ -158,4 +158,21 @@ appDirectives.directive('ngThumb', ['$window', function($window) {
         }
     };
 }]);
-
+/****************************/
+/***输入不许为空，不许小于0指令***/
+/****************************/
+appDirectives.directive('noZero', [function() {
+    return {
+        restrict: 'AE',
+        require: '?ngModel',
+        scope: {},
+        link: function(scope,element, attributes,ngmodel) {
+            element.bind('blur',function(){
+                if(ngmodel.$viewValue == "" || ngmodel.$viewValue <= 0) {
+                    ngmodel.$setViewValue(0);
+                    ngmodel.$render();
+                }
+            })
+        }
+    };
+}]);
