@@ -17,6 +17,14 @@ app.run(['$location','$rootScope','$state',function($location, $rootScope,$state
 }]);
 var appCtrls = angular.module('appCtrls',[]);
 /****************************/
+/***注册控制器***/
+/****************************/
+appCtrls.controller('registerCtrl',['$scope',
+    function ($scope) {
+        
+    }
+]);
+/****************************/
 /***商品列表控制器***/
 /****************************/
 appCtrls.controller('releaseListCtrl',['$scope','$state',

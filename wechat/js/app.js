@@ -30,4 +30,10 @@ app.config(function ($stateProvider, $urlRouterProvider)  {
             title:"物品详情",
             controller:"itemDetailsCtrl"
         })
+        .state("register", {
+            url: "/register",
+            templateUrl: 'tpls/register.html',
+            title:"注册",
+            controller:"registerCtrl"
+        })
 })

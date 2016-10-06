@@ -91,7 +91,7 @@ appDirectives.directive('myRelease',['$http',function($http) {
 /****************************/
 /***物品详情指令***/
 /****************************/
-appDirectives.directive('itemDetail',['$http',function($http) {
+appDirectives.directive('itemDetail',['$http','$state',function($http,$state) {
     return {
         restrict: 'AE',
         link: function(scope, element, attrs) {
@@ -106,7 +106,8 @@ appDirectives.directive('itemDetail',['$http',function($http) {
                     scope.renter       = res.data.renter;
                     scope.description  = res.data.description;
                 } else {
-                    alert(res.message)
+                    $state.go('releaseList');
+                    alert(res.message);
                 }
             }).error(function() {
                 alert("error")
