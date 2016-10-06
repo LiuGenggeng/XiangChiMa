@@ -160,17 +160,23 @@ body {
     max-height: 100%;
 }
 .list-description {
-    width: 12rem;
+    width: 13rem;
     padding: 1rem;
     float: left;
 }
+.list-description h3 {
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
 .description {
+    overflow: hidden;
     letter-spacing: 0.02rem;
     font-size: 0.95rem;
     margin-top: 0.8rem;
     line-height: 1.3rem;
     width: 13rem;
-    height: 4rem;
+    height: 3.8rem;
     color: #7f7f7f;
 }
 .list-tich {
@@ -183,11 +189,12 @@ body {
     line-height: 2.5rem;
 }
 .list-time {
+    font-size: 0.8rem;
     color: #cfcfcf;
 }
 .list-much {
     color: #0c9f68;
-    letter-spacing: 0.3rem;
+    font-size: 0.8rem;
 }
 .ya,.ya_2 {
     margin-left: 1rem;

@@ -7,13 +7,11 @@
 app.run(['$location','$rootScope','$state',function($location, $rootScope,$state){
     $rootScope.$on('$stateChangeSuccess', function (event, toState) {
         $rootScope.title = toState.title;
-        if($location.path() == "/release") {
-            console.log($location.path());
+        if($location.path() == "/release" || $location.path() == "/myRelease") {
             if(login == false) {
                 $state.go('releaseList')
             }
         }else {
-            console.log($location.path());
         }
     });
 }]);
@@ -21,10 +19,14 @@ var appCtrls = angular.module('appCtrls',[]);
 /****************************/
 /***商品列表控制器***/
 /****************************/
-appCtrls.controller('releaseListCtrl',['$scope',
-    function ($scope) {
+appCtrls.controller('releaseListCtrl',['$scope','$state',
+    function ($scope,$state) {
+        $scope.seeDetail = function(id) {
+            $state.go('itemDetails');
+            sessionStorage.setItem('uuid',id)
+        };
         $scope.lists = [
-            {'cardFree':'10','id':'1','product_name':'Giant 自行车','description':'','thumbnail':[],'publish_date':'刚刚','price':'30元/天','deposit':"10"}
+            {'cardFree':'','product_name':'','description':'','thumbnail':[],'publish_date':'','price':'','deposit':""}
         ]
     }
 ]);
@@ -36,7 +38,7 @@ appCtrls.controller('myReleaseCtrl',['$scope',
         $scope.toggle = false;
         $scope.loading = false;
         $scope.lists = [
-            {'cardFree':'10','id':'1','product_name':'Giant 自行车','description':'','thumbnail':[],'publish_date':'刚刚','price':'30元/天','deposit':"10"}
+            {'cardFree':'','product_name':'','description':'','thumbnail':[],'publish_date':'','price':'','deposit':""}
         ];
         $scope.zu = function() {
             $scope.toggle = !$scope.toggle;
@@ -141,13 +143,13 @@ appCtrls.controller('AppController',['$scope','FileUploader','$location',
 appCtrls.controller('itemDetailsCtrl',['$scope',
     function ($scope) {
         $scope.toggle = false;
-        $scope.publish_date = '今天14:30发布';
-        $scope.price = '34';
-        $scope.product_name = 'TENTX 舒适型个人帐篷';
-        $scope.deposit = '10';
-        $scope.cardFree = '8';
-        $scope.renter = '14743163347';
-        $scope.description = '出租TENTX品牌舒适型个人帐篷意见，可长时间租用，个人爱护的比I啊哦好，9新，可给需要户外旅游的人事租用';
+        $scope.publish_date = '';
+        $scope.price = '';
+        $scope.product_name = '';
+        $scope.deposit = '';
+        $scope.cardFree = '';
+        $scope.renter = '';
+        $scope.description = '';
         $scope.zu = function() {
             $scope.toggle = !$scope.toggle;
         };

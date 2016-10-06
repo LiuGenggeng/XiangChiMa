@@ -29,7 +29,7 @@ appDirectives.directive('deleteIt',['$http',function($http) {
 /****************************/
 /***商品列表指令***/
 /****************************/
-appDirectives.directive('shouQuan',['$http',function($http) {
+/*appDirectives.directive('shouQuan',['$http',function($http) {
     return {
         restrict: 'AE',
         link: function(scope, element, attrs) {
@@ -44,7 +44,7 @@ appDirectives.directive('shouQuan',['$http',function($http) {
             });
         }
     }
-}]);
+}]);*/
 
 /****************************/
 /***商品列表指令***/
@@ -53,6 +53,8 @@ appDirectives.directive('releaseList',['$http',function($http) {
     return {
         restrict: 'AE',
         link: function(scope, element, attrs) {
+            var DateTime = new Date();
+            console.log(DateTime);
             $http.get('https://www.desckie.com/iwantrent/getAllProduct/').success(function(res) {
                 if(res.flag === true) {
                     scope.lists = res.data;
@@ -93,7 +95,8 @@ appDirectives.directive('itemDetail',['$http',function($http) {
     return {
         restrict: 'AE',
         link: function(scope, element, attrs) {
-            $http.post('https://www.desckie.com/iwantrent/getProductInfo/',{param:{uuid:""}}).success(function(res) {
+            var itemId = sessionStorage.getItem("uuid");
+            $http.post('https://www.desckie.com/iwantrent/getProductInfo/',{param:{uuid:itemId}}).success(function(res) {
                 if (res.flag === true) {
                     scope.publish_date = res.data.publish_date;
                     scope.price        = res.data.price;
