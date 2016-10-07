@@ -21,7 +21,9 @@ var appCtrls = angular.module('appCtrls',[]);
 /****************************/
 appCtrls.controller('registerCtrl',['$scope',
     function ($scope) {
-        
+        $scope.validateCode = '获取验证码';
+        $scope.getCodeToggle = false;
+        $scope.regToggle    = false;
     }
 ]);
 /****************************/

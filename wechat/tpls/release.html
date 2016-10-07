@@ -51,13 +51,13 @@
     <div class="weui_cell no_bottom">
         <div class="weui_cell_bd weui_cell_primary release_much">
             <div>
-                <input type="tel" class="price" ng-value="release_much" ng-model="release_much" name="price" required no-zero /> <span class="unit">元/天</span>
+                <input type="number" class="price" ng-value="{{release_much}}" pattern="[0-9]*" ng-model="release_much" name="price" required no-zero /> <span class="unit">元/天</span>
                 <h3>租金</h3>
             </div>
         </div>
         <div class="weui_cell_bd weui_cell_primary release_mortgage">
             <div>
-                <input  type="tel" class="deposit" ng-value="release_mortgage" ng-model="release_mortgage" name="deposit" required  no-zero /> <span class="unit">元</span>
+                <input  type="number" class="deposit" ng-value="release_mortgage" pattern="[0-9]*" ng-model="release_mortgage" name="deposit" required  no-zero /> <span class="unit">元</span>
                 <h3>押金</h3>
             </div>
         </div>
@@ -71,12 +71,12 @@
             <div class="weui_cell_bd weui_cell_primary">
                 <p ng-class="{'agree_content':!toggle_mortgage}" style="margin-left: 1.3rem">同意有效证件(学生证、身份证等),可抵适当押金</p>
                 <div class="input_mortgage" ng-show="toggle_mortgage">
-                    请输入抵扣额度: <input type="tel" class="mortgage_input" name="cardFree" no-zero ng-model="mortgage_input"/> 元
+                    请输入抵扣额度: <input type="number" class="mortgage_input" name="cardFree" no-zero ng-model="mortgage_input"/> 元
                 </div>
             </div>
         </label>
     </div>
     <div class="weui_cell weui_cell_primary">
-        <input value="确认发布" ng-disabled="release_form.$invalid || uploader.queue.length==0" type="button" ng-click="uploader.uploadAll()" class="weui_btn weui_btn_primary confirm_release" />
+        <input value="确认发布" ng-disabled="release_form.$invalid || uploader.queue.length==0" pattern="[0-9]*" type="button" ng-click="uploader.uploadAll()" class="weui_btn weui_btn_primary confirm_release" />
     </div>
 </form>

@@ -3,6 +3,83 @@
  */
 var appDirectives = angular.module('appDirectives',[]);
 var login = false;
+
+/****************************/
+/***获取验证码指令***/
+/****************************/
+appDirectives.directive('getCode',['$http','md5',function($http,md5) {
+    return {
+        restrict: 'AE',
+        link: function(scope, element, attrs) {
+            element.bind('click', function() {
+                var inpTel = document.getElementById("tel");
+                if (inpTel.checkValidity() == false) {
+                }
+                else {
+                    var telInput = $("#tel").val();
+                    var timeStamp = md5.createHash(Date.parse(new Date()).toString());
+                    var telStamp  = md5.createHash(telInput);
+                    var md5Tel = telInput.substring(0,1) + timeStamp + telInput.substring(1,10) + telStamp + telInput.substring(10,11);
+                    console.log(md5Tel);
+                    //获取token,有效时间1小时
+                    $.ajax("http://www.desckie.com/iwantrent/getToken/", {
+
+                        type: "POST",
+                        contentType: 'application/x-www-form-urlencoded',
+                        data:{
+                            '1487a6bc2902fe7e4238eb0cc8144381':md5Tel,
+                            'e51d0160easdasdasd33cea5b':'ec134dfb1f011990'
+                        },
+                        success: function(res) {
+                            if(res.flag = true) {
+                                //获取到token之后进行验证码请求
+                                getCode(res.token);
+                                countDown(60);
+                            }else {
+                                console.log("2")
+                            }
+                        }
+
+                    });
+                    //send: tel、token
+                    getCode = function(token) {
+                        $.ajax("http://www.desckie.com/iwantrent/sendSMSVerificationCode/",{
+                            type: "POST",
+                            contentType: 'application/x-www-form-urlencoded',
+                            data:{
+                                'username':telInput,
+                                'token':token
+                            },
+                            success: function(res) {
+                                if(res.flag = true) {
+                                    scope.regToggle = true
+                                }else {
+                                    alert(res.message)
+                                }
+                            }
+
+                        })
+                    };
+                    //60秒后获取验证码按钮可用
+                    countDown = function(num) {
+                        setInterval(function() {
+                            if(num > 0) {
+                                num = num - 1;
+                                scope.validateCode = num + '秒再次获取';
+                                scope.getCodeToggle = true
+                            }else{
+                                scope.validateCode = '获取验证码';
+                                scope.getCodeToggle = false
+                            }
+                            scope.$apply();
+                        },1000)
+                    }
+                }
+            })
+        }
+    }
+}]);
+
 /****************************/
 /***删除发布物品指令***/
 /****************************/
