@@ -435,3 +435,8 @@ div.weui_cell_ft {
     height: 44px;
     vertical-align: middle;
 }
+input.getCode {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    height: 44px;
+}
