@@ -172,30 +172,47 @@ appDirectives.directive('itemDetail',['$http','$state',function($http,$state) {
     return {
         restrict: 'AE',
         link: function(scope, element, attrs) {
-            $('.jquery-reslider').reSlider({
-                speed:1000,//设置轮播的高度
-                delay:5000,//设置轮播的延迟时间
-                imgCount:3,//设置轮播的图片数
-                dots:true,//设置轮播的序号点
-                autoPlay:true//设置轮播是否自动播放
-            });
-            /*var itemId = sessionStorage.getItem("uuid");
-            $http.post('https://www.desckie.com/iwantrent/getProductInfo/',{param:{uuid:itemId}}).success(function(res) {
-                if (res.flag === true) {
-                    scope.publish_date = res.data.publish_date;
-                    scope.price        = res.data.price;
-                    scope.product_name = res.data.product_name;
-                    scope.deposit      = res.data.deposit;
-                    scope.cardFree     = res.data.cardFree;
-                    scope.renter       = res.data.renter;
-                    scope.description  = res.data.description;
-                } else {
-                    $state.go('releaseList');
-                    alert(res.message);
+            var itemId = sessionStorage.getItem("uuid");
+            $.ajax("https://www.desckie.com/iwantrent/getProductInfo/",{
+                type: "POST",
+                contentType: 'application/x-www-form-urlencoded',
+                data:{
+                    'uuid':itemId
+                },
+                success: function(response) {
+                    var res = JSON.parse(response);
+                    if (res.flag === true) {
+                        scope.publish_date = res.data.publish_date;
+                        scope.price        = res.data.price;
+                        scope.product_name = res.data.product_name;
+                        scope.deposit      = res.data.deposit;
+                        scope.cardFree     = res.data.cardFree;
+                        scope.renter       = res.data.renter;
+                        scope.description  = res.data.description;
+                        scope.thumbnail    = res.data.thumbnail;
+                        scope.$apply();
+                        console.log(res.data.thumbnail);
+                        picCarousel(res.data.thumbnail.length);
+                    } else {
+                        $state.go('releaseList');
+                        alert(res.message);
+                    }
                 }
-            }).error(function() {
-                alert("error")
-            })*/
+            });
+            function picCarousel(length) {
+                setTimeout(function() {
+                    $('.jquery-reslider').reSlider({
+                        speed:1000,//设置轮播的高度
+                        delay:5000,//设置轮播的延迟时间
+                        imgCount:length,//设置轮播的图片数
+                        dots:true,//设置轮播的序号点
+                        autoPlay:true//设置轮播是否自动播放
+                    });
+                    scope.loadingToggle = false;
+                    scope.$apply()
+                },0);
+
+            }
         }
     }
 }]);

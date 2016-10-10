@@ -160,6 +160,8 @@ appCtrls.controller('itemDetailsCtrl',['$scope',
         $scope.cardFree = '';
         $scope.renter = '';
         $scope.description = '';
+        $scope.loadingToggle = true;
+        $scope.thumbnail = [];
         $scope.zu = function() {
             $scope.toggle = !$scope.toggle;
         };
