@@ -8,7 +8,7 @@ appServers.filter('date',function(){
         var date2 = new Date(inputArray);
         var date2Month = (date2.getMonth()+1)+"月";   //获取date2的月
         var date2Date  = date2.getDate()+"日";   //获取date2的日
-        var date2Time  = date2.toLocaleTimeString();   //获取date2的时间
+        var date2Time  = date2.toLocaleTimeString().substring(2,date2.toLocaleTimeString().length);   //获取date2的时间
         var date3 = date1.getTime() - date2.getTime();   //计算差的毫秒数
         //计算出小时数
         var leave1 = date3%(24*3600*1000);   //计算天数后剩余的毫秒数

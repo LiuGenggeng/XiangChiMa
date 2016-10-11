@@ -164,8 +164,9 @@ body {
     max-height: 100%;
 }
 .list-description {
-    width: 13rem;
+    width: 14rem;
     padding: 1rem;
+    padding-right: 0;
     float: left;
 }
 .list-description h3 {
