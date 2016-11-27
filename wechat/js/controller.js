@@ -27,6 +27,14 @@ appCtrls.controller('registerCtrl',['$scope',
     }
 ]);
 /****************************/
+/***登录控制器***/
+/****************************/
+appCtrls.controller('loginCtrl',['$scope',
+    function ($scope) {
+
+    }
+]);
+/****************************/
 /***商品列表控制器***/
 /****************************/
 appCtrls.controller('releaseListCtrl',['$scope','$state',

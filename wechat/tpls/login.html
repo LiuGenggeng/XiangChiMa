@@ -1,0 +1,21 @@
+<form id="regForm" name="loginForm">
+    <div class="weui_cells weui_cells_form">
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">用户名</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" id="name" type="text" pattern="^1[3-9]\d{9}$" maxlength="11" placeholder="请输入号码" required>
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">密码</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" id="password" type="password" placeholder="请输入密码">
+            </div>
+        </div>
+    </div>
+    <div class="weui_cells">
+        <div class="bd spacing">
+            <a href="javascript:;" class="weui_btn weui_btn_primary" login>登录</a>
+        </div>
+    </div>
+</form>

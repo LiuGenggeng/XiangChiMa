@@ -34,6 +34,7 @@ appDirectives.directive('getCode',['$http','md5',function($http,md5) {
                             if(res.flag = true) {
                                 //获取到token之后进行验证码请求
                                 getCode(res.token);
+                                window.token = res.token;
                                 countDown(60);
                             }else {
                                 console.log("2")
@@ -79,6 +80,78 @@ appDirectives.directive('getCode',['$http','md5',function($http,md5) {
         }
     }
 }]);
+
+
+/****************************/
+/***注册指令***/
+/****************************/
+appDirectives.directive('register',['$http',function($http) {
+    return {
+        restrict:'AE',
+        link: function(scope,element,attrs) {
+            element.bind('click',function() {
+                var telInput = $("#tel").val();
+                var passwordInput = $("#password").val();
+                var code = $("#code").val();
+                //注册指令，发送手机号，密码，验证码，token
+                $.ajax("http://www.desckie.com/iwantrent/signup/",{
+                    type: "POST",
+                    contentType: 'application/x-www-form-urlencoded',
+                    data:{
+                        'username': telInput,
+                        'token': token,
+                        'password': passwordInput,
+                        'code': code
+                    },
+                    success: function(data) {
+                        var res = data;
+                        if(res.flag === true) {
+                            alert('注册成功');
+                        }else {
+                            alert(res.message)
+                        }
+                    }
+                })
+            })
+        }
+    }
+}]);
+
+/****************************/
+/***登录指令***/
+/****************************/
+appDirectives.directive('login',['$http','$state',function($http,$state) {
+    return {
+        restrict:'AE',
+        link: function(scope,element,attrs) {
+            element.bind('click',function() {
+                var username = $("#name").val();
+                var passwordInput = $("#password").val();
+                //登录指令，发送手机号，密码
+                $.ajax("http://www.desckie.com/iwantrent/login/",{
+                    type: "POST",
+                    contentType: 'application/x-www-form-urlencoded',
+                    data:{
+                        'username': username,
+                        'password': passwordInput
+                    },
+                    success: function(data) {
+                        var res = JSON.parse(data);
+                        if(res.flag == true) {
+                            login = true;
+                            $state.go('releaseList');
+                            console.log(document.cookie);
+                        }else {
+                            alert(res.message)
+                        }
+                    }
+                })
+            })
+        }
+    }
+}])
+
+
 
 /****************************/
 /***删除发布物品指令***/
@@ -134,7 +207,7 @@ appDirectives.directive('releaseList',['$http',function($http) {
             console.log(DateTime);
             $http.get('https://www.desckie.com/iwantrent/getAllProduct/').success(function(res) {
                 if(res.flag === true) {
-                    scope.lists = res.data;
+                    scope.lists = res.data.data;
                 }else{
                     alert("error")
                 }
@@ -148,18 +221,25 @@ appDirectives.directive('releaseList',['$http',function($http) {
 /****************************/
 /***我的发布指令***/
 /****************************/
-appDirectives.directive('myRelease',['$http',function($http) {
+appDirectives.directive('myRelease',['$http','$state',function($http,$state) {
     return {
         restrict: 'AE',
         link: function(scope, element, attrs) {
-            $http.get('https://www.desckie.com/iwantrent/getMyRental/').success(function(res) {
-                if (res.flag === true) {
-                    scope.lists = res.data;
-                } else {
-                    alert(res.message);
+            $.ajax("http://www.desckie.com/iwantrent/getMyRental/",{
+                type: "GET",
+                contentType: 'application/x-www-form-urlencoded',
+                success: function(res) {
+                    console.log(res);
+                    if(res.flag == true) {
+                        scope.lists = res.data;
+                    }else {
+                        console.log(res.message);
+                        //if(res.errid == '00031') {
+                        //    $state.go('login');
+                        //    login = false;
+                        //}
+                    }
                 }
-            }).error(function() {
-                alert("error")
             })
         }
     }

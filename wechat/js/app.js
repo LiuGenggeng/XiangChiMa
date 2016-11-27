@@ -36,4 +36,10 @@ app.config(function ($stateProvider, $urlRouterProvider)  {
             title:"注册",
             controller:"registerCtrl"
         })
+        .state("login",{
+            url: "/login",
+            templateUrl: 'tpls/login.html',
+            title:"登录",
+            controller: "loginCtrl"
+        })
 })

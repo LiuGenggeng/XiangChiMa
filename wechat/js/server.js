@@ -24,10 +24,10 @@ appServers.filter('date',function(){
             if(days >= 2) {
                 return date2Month+date2Date+" "+date2Time
             }else{
-                return "昨天"+date2Time
+                return "昨天"+" " + date2Time
             }
         }else if(hours >= 1){
-            return "今天"+date2Time
+            return "今天"+ " " + date2Time
         }else if(minutes >= 1) {
             return minutes+"分钟前"
         }else if(seconds >= 1) {
