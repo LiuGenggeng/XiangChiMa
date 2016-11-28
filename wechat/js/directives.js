@@ -135,12 +135,11 @@ appDirectives.directive('login',['$http','$state',function($http,$state) {
                         'username': username,
                         'password': passwordInput
                     },
-                    success: function(data) {
+                    success: function(data,status,xhr) {
                         var res = JSON.parse(data);
                         if(res.flag == true) {
                             login = true;
                             $state.go('releaseList');
-                            console.log(document.cookie);
                         }else {
                             alert(res.message)
                         }
