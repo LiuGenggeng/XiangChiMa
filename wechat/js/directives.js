@@ -205,7 +205,7 @@ appDirectives.directive('releaseList',['$http',function($http) {
             var DateTime = new Date();
             console.log(DateTime);
             $http.get('https://www.desckie.com/iwantrent/getAllProduct/').success(function(res) {
-                if(res.flag === true) {
+                if(res.flag == true) {
                     scope.lists = res.data.data;
                 }else{
                     alert("error")
@@ -224,22 +224,31 @@ appDirectives.directive('myRelease',['$http','$state',function($http,$state) {
     return {
         restrict: 'AE',
         link: function(scope, element, attrs) {
-            $.ajax("http://www.desckie.com/iwantrent/getMyRental/",{
-                type: "GET",
-                contentType: 'application/x-www-form-urlencoded',
-                success: function(res) {
-                    console.log(res);
-                    if(res.flag == true) {
-                        scope.lists = res.data;
-                    }else {
-                        console.log(res.message);
-                        //if(res.errid == '00031') {
-                        //    $state.go('login');
-                        //    login = false;
-                        //}
-                    }
+            //$.ajax("http://www.desckie.com/iwantrent/getMyRental/",{
+            //    type: "GET",
+            //    contentType: 'application/x-www-form-urlencoded',
+            //    success: function(res) {
+            //        console.log(res);
+            //        if(res.flag == true) {
+            //            scope.lists = res.data;
+            //        }else {
+            //            console.log(res.message);
+            //            //if(res.errid == '00031') {
+            //            //    $state.go('login');
+            //            //    login = false;
+            //            //}
+            //        }
+            //    }
+            //})
+            $http.get('http://www.desckie.com/iwantrent/getMyRental/').success(function(res) {
+                if(res.flag == true) {
+                    scope.lists = res.data;
+                }else{
+                    console.log(res.message);
                 }
-            })
+            }).error(function() {
+                alert("error")
+            });
         }
     }
 }]);
