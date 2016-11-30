@@ -131,15 +131,17 @@ appDirectives.directive('login',['$http','$state',function($http,$state) {
                 $.ajax("http://www.desckie.com/iwantrent/login/",{
                     type: "POST",
                     contentType: 'application/x-www-form-urlencoded',
+                    withCredentials:true,
                     data:{
                         'username': username,
                         'password': passwordInput
                     },
-                    success: function(data,status,xhr) {
+                    success: function(data) {
                         var res = JSON.parse(data);
                         if(res.flag == true) {
                             login = true;
                             $state.go('releaseList');
+                            document.cookie="sessionid="+res.sessionid;
                         }else {
                             alert(res.message)
                         }
@@ -224,31 +226,34 @@ appDirectives.directive('myRelease',['$http','$state',function($http,$state) {
     return {
         restrict: 'AE',
         link: function(scope, element, attrs) {
-            //$.ajax("http://www.desckie.com/iwantrent/getMyRental/",{
-            //    type: "GET",
-            //    contentType: 'application/x-www-form-urlencoded',
-            //    success: function(res) {
-            //        console.log(res);
-            //        if(res.flag == true) {
-            //            scope.lists = res.data;
-            //        }else {
-            //            console.log(res.message);
-            //            //if(res.errid == '00031') {
-            //            //    $state.go('login');
-            //            //    login = false;
-            //            //}
-            //        }
-            //    }
-            //})
-            $http.get('http://www.desckie.com/iwantrent/getMyRental/').success(function(res) {
-                if(res.flag == true) {
-                    scope.lists = res.data;
-                }else{
-                    console.log(res.message);
+            $.ajax("http://www.desckie.com/iwantrent/getMyRental/",{
+                type: "GET",
+                contentType: 'application/x-www-form-urlencoded',
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: function(res) {
+                    console.log(res);
+                    if(res.flag == true) {
+                        scope.lists = res.data;
+                    }else {
+                        console.log(res.message);
+                        //if(res.errid == '00031') {
+                        //    $state.go('login');
+                        //    login = false;
+                        //}
+                    }
                 }
-            }).error(function() {
-                alert("error")
-            });
+            })
+            //$http.get('http://www.desckie.com/iwantrent/getMyRental/').success(function(res) {
+            //    if(res.flag == true) {
+            //        scope.lists = res.data;
+            //    }else{
+            //        console.log(res.message);
+            //    }
+            //}).error(function() {
+            //    alert("error")
+            //});
         }
     }
 }]);
