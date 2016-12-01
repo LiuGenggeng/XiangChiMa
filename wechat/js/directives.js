@@ -104,7 +104,7 @@ appDirectives.directive('register',['$http',function($http) {
                         'code': code
                     },
                     success: function(data) {
-                        var res = data;
+                        var res = JSON.parse(data);
                         if(res.flag === true) {
                             alert('注册成功');
                         }else {
@@ -131,7 +131,6 @@ appDirectives.directive('login',['$http','$state',function($http,$state) {
                 $.ajax("http://www.desckie.com/iwantrent/login/",{
                     type: "POST",
                     contentType: 'application/x-www-form-urlencoded',
-                    withCredentials:true,
                     data:{
                         'username': username,
                         'password': passwordInput
@@ -142,6 +141,7 @@ appDirectives.directive('login',['$http','$state',function($http,$state) {
                             login = true;
                             $state.go('releaseList');
                             document.cookie="sessionid="+res.sessionid;
+                            sessionStorage.setItem("sessionid",res.sessionid);
                         }else {
                             alert(res.message)
                         }
@@ -226,11 +226,12 @@ appDirectives.directive('myRelease',['$http','$state',function($http,$state) {
     return {
         restrict: 'AE',
         link: function(scope, element, attrs) {
-            $.ajax("http://www.desckie.com/iwantrent/getMyRental/",{
-                type: "GET",
+            var sessionid = sessionStorage.getItem("sessionid");
+            $.ajax("http://www.desckie.com/iwantrent/wxgetMyRental/",{
+                type: "POST",
                 contentType: 'application/x-www-form-urlencoded',
-                xhrFields: {
-                    withCredentials: true
+                data: {
+                    sessionid: sessionid
                 },
                 success: function(res) {
                     console.log(res);
@@ -238,10 +239,10 @@ appDirectives.directive('myRelease',['$http','$state',function($http,$state) {
                         scope.lists = res.data;
                     }else {
                         console.log(res.message);
-                        //if(res.errid == '00031') {
-                        //    $state.go('login');
-                        //    login = false;
-                        //}
+                        if(res.errid == '00031') {
+                            $state.go('login');
+                            login = false;
+                        }
                     }
                 }
             })
