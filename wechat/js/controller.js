@@ -94,9 +94,10 @@ appCtrls.controller('AppController',['$scope','FileUploader','$location',
         /*$scope.goLogin = function() {
             $location.path("/releaseList")
         };*/
+        var sessionid = sessionStorage.getItem("sessionid");
         var uploader = $scope.uploader = new FileUploader({
-            url: 'http://www.desckie.com/iwantrent/releaseRental/',
-            withCredentials: true
+            url: 'http://www.desckie.com/iwantrent/wxreleaseRental/',
+            withCredentials:true
         });
 
         // FILTERS
@@ -122,6 +123,7 @@ appCtrls.controller('AppController',['$scope','FileUploader','$location',
         };
         uploader.onBeforeUploadItem = function(item) {
             item.formData = {
+                sessionid:sessionid,
                 product_name: $(".weui_textarea_1").val(),
                 description: $(".weui_textarea_2").val(),
                 price: $(".price").val(),
