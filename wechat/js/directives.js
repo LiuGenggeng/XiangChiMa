@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/9/19.
  */
 var appDirectives = angular.module('appDirectives',[]);
-var login = false;
+var login = true;
 
 /****************************/
 /***获取验证码指令***/
@@ -233,12 +233,15 @@ appDirectives.directive('myRelease',['$http','$state',function($http,$state) {
                 data: {
                     sessionid: sessionid
                 },
-                success: function(res) {
-                    console.log(res);
+                success: function(data) {
+                    var res = JSON.parse(data);
                     if(res.flag == true) {
-                        scope.lists = res.data;
+                        if(res.data.length !== 0) {
+                            scope.lists = res.data;
+                        }else {
+                            $(".lists")[0].style.display = 'none';
+                        }
                     }else {
-                        console.log(res.message);
                         if(res.errid == '00031') {
                             $state.go('login');
                             login = false;
@@ -246,15 +249,6 @@ appDirectives.directive('myRelease',['$http','$state',function($http,$state) {
                     }
                 }
             })
-            //$http.get('http://www.desckie.com/iwantrent/getMyRental/').success(function(res) {
-            //    if(res.flag == true) {
-            //        scope.lists = res.data;
-            //    }else{
-            //        console.log(res.message);
-            //    }
-            //}).error(function() {
-            //    alert("error")
-            //});
         }
     }
 }]);
