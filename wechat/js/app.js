@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/9/12.
  */
-var app = angular.module('xzm',['ui.router','appCtrls','appDirectives','angularFileUpload','appServers','angular-md5']);
+var app = angular.module('xzm',['ui.router','appCtrls','appDirectives','appServers','angular-md5']);
 app.config(function ($stateProvider, $urlRouterProvider)  {
     $urlRouterProvider.when("", "/releaseList");
     $urlRouterProvider.otherwise('/releaseList');

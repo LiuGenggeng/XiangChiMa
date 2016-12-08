@@ -12,39 +12,29 @@
     <!--上传图片-->
     <div>
 
-        <div class="container" style="overflow: hidden">
+        <div id="wrapper">
+            <div id="container">
+                <!--头部，相册选择和格式选择-->
 
-            <div class="row">
-
-                <div class="col-md-9">
-
-                    <div>
-                        <div ng-repeat="item in uploader.queue" class="tr">
-                            <div class="td">
-                                <!-- Image preview -->
-                                <!--auto height-->
-                                <!--<div ng-thumb="{ file: item.file, width: 100 }"></div>-->
-                                <!--auto width-->
-                                <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
-                                <span class="delePic" ng-click="item.remove()" ng-show="uploader.isHTML5"></span>
-                                <!--fixed width and height -->
-                                <!--<div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
-                            </div>
+                <div id="uploader">
+                    <div class="queueList">
+                        <div id="dndArea" class="placeholder">
+                            <div id="filePicker"></div>
+                            <p>请将照片添加到这里,最多可选4张</p>
+                        </div>
+                    </div>
+                    <div class="statusBar" style="display:none;">
+                        <div class="progress">
+                            <span class="text">0%</span>
+                            <span class="percentage"></span>
+                        </div><div class="info"></div>
+                        <div class="btns">
+                            <div id="filePicker2"></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3"  ng-show="uploader.queue.length<4">
-                    <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
-                    <div class="weui_uploader_input_wrp">
-                        <input name="pic_1" nv-file-select="" uploader="uploader" class="weui_uploader_input" type="file" accept="image/*" multiple />
-                        <span class="add_pic">添加图片</span>
-                    </div>
-                </div>
-
             </div>
-
         </div>
-
     </div>
 
     <div class="weui_cell no_bottom">
@@ -76,6 +66,6 @@
         </label>
     </div>
     <div class="weui_cell weui_cell_primary">
-        <input value="确认发布" ng-disabled="release_form.$invalid || uploader.queue.length==0" pattern="[0-9]*" type="button" ng-click="uploader.uploadAll()" class="weui_btn weui_btn_primary confirm_release" />
+        <input value="确认发布" ng-disabled="release_form.$invalid || uploader.queue.length==0" pattern="[0-9]*" type="button" class="weui_btn weui_btn_primary confirm_release" />
     </div>
 </form>

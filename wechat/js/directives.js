@@ -180,33 +180,13 @@ appDirectives.directive('deleteIt',['$http',function($http) {
 /****************************/
 /***商品列表指令***/
 /****************************/
-/*appDirectives.directive('shouQuan',['$http',function($http) {
-    return {
-        restrict: 'AE',
-        link: function(scope, element, attrs) {
-            $http.get('https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect').success(function(res) {
-                if(res.flag === true) {
-                    scope.lists = res.data;
-                }else{
-                    alert("error")
-                }
-            }).error(function() {
-                alert("error")
-            });
-        }
-    }
-}]);*/
-
-/****************************/
-/***商品列表指令***/
-/****************************/
 appDirectives.directive('releaseList',['$http',function($http) {
     return {
         restrict: 'AE',
         link: function(scope, element, attrs) {
             var DateTime = new Date();
             console.log(DateTime);
-            $http.get('https://www.desckie.com/iwantrent/getAllProduct/').success(function(res) {
+            $http.get('http://www.desckie.com/iwantrent/getAllProduct/').success(function(res) {
                 if(res.flag == true) {
                     scope.lists = res.data.data;
                 }else{
@@ -261,7 +241,7 @@ appDirectives.directive('itemDetail',['$http','$state',function($http,$state) {
         restrict: 'AE',
         link: function(scope, element, attrs) {
             var itemId = sessionStorage.getItem("uuid");
-            $.ajax("https://www.desckie.com/iwantrent/getProductInfo/",{
+            $.ajax("http://www.desckie.com/iwantrent/getProductInfo/",{
                 type: "POST",
                 contentType: 'application/x-www-form-urlencoded',
                 data:{
@@ -303,54 +283,6 @@ appDirectives.directive('itemDetail',['$http','$state',function($http,$state) {
             }
         }
     }
-}]);
-
-/****************************/
-/***发布指令***/
-/****************************/
-appDirectives.directive('ngThumb', ['$http','$window', function($http,$window) {
-    var helper = {
-        support: !!($window.FileReader && $window.CanvasRenderingContext2D),
-        isFile: function(item) {
-            return angular.isObject(item) && item instanceof $window.File;
-        },
-        isImage: function(file) {
-            var type =  '|' + file.type.slice(file.type.lastIndexOf('/') + 1) + '|';
-            return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-        }
-    };
-
-    return {
-        restrict: 'A',
-        template: '<canvas/>',
-        link: function(scope, element, attributes) {
-            if (!helper.support) return;
-
-            var params = scope.$eval(attributes.ngThumb);
-
-            if (!helper.isFile(params.file)) return;
-            if (!helper.isImage(params.file)) return;
-
-            var canvas = element.find('canvas');
-            var reader = new FileReader();
-
-            reader.onload = onLoadFile;
-            reader.readAsDataURL(params.file);
-
-            function onLoadFile(event) {
-                var img = new Image();
-                img.onload = onLoadImage;
-                img.src = event.target.result;
-            }
-
-            function onLoadImage() {
-                var width = params.width || this.width / this.height * params.height;
-                var height = params.height || this.height / this.width * params.width;
-                canvas.attr({ width: width, height: height });
-                canvas[0].getContext('2d').drawImage(this, 0, 0, width, height);
-            }
-        }
-    };
 }]);
 /****************************/
 /**输入不许为空，不许小于0指令**/
