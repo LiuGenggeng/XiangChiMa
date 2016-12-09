@@ -152,31 +152,6 @@ appDirectives.directive('login',['$http','$state',function($http,$state) {
     }
 }])
 
-
-
-/****************************/
-/***删除发布物品指令***/
-/****************************/
-appDirectives.directive('deleteIt',['$http',function($http) {
-    return {
-        restrict: 'AE',
-        link: function(scope, element, attrs) {
-            element.bind('click', function() {
-                scope.$emit('loading', true);
-                $http.post('http://www.desckie.com/iwantrent/deleteRental/',{param:{uuid:"1"}}).success(function(res) {
-                    if(res.flag === true) {
-                        alert("删除成功");
-                        window.location.reload()
-                    }else{
-                        alert("error")
-                    }
-                }).error(function() {
-                    alert("error")
-                });
-            })
-        }
-    }
-}]);
 /****************************/
 /***商品列表指令***/
 /****************************/
@@ -218,6 +193,7 @@ appDirectives.directive('myRelease',['$http','$state',function($http,$state) {
                     if(res.flag == true) {
                         if(res.data.length !== 0) {
                             scope.lists = res.data;
+                            scope.$apply();
                         }else {
                             $(".lists")[0].style.display = 'none';
                         }

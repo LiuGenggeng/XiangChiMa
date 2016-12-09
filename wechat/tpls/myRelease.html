@@ -10,7 +10,7 @@
                     <div ng-bind="list.description" class="description"></div>
                     <div class="list-tich">
                         <span ng-bind="list.publish_date" class="list-time"></span>
-                        <span class="delete" ng-click="zu()"><img src="images/icon2.png"></span>
+                        <span class="delete" ng-click="zu(list.uuid)" id={{list.uuid}}><img src="images/icon2.png"></span>
                     </div>
                 </div>
             </div>
@@ -19,7 +19,7 @@
 </div>
 <div class="footer">
     <a href="" ui-sref="release" class="release-btn">发布出租</a>
-    <a href="" class="finaishChange-btn">完成更改</a>
+    <a href="" ui-sref="releaseList" class="finaishChange-btn">完成更改</a>
 </div>
 <div class="clear"></div>
 <!--提示框部分 start-->
@@ -30,7 +30,7 @@
         <div class="weui_dialog_bd">您确定要删除此项么?</div>
         <div class="weui_dialog_ft">
             <a href="javascript:;" class="weui_btn_dialog default" ng-click="close()">取消</a>
-            <a href="javascript:;" class="weui_btn_dialog primary" delete-it>确定</a>
+            <a href="javascript:;" class="weui_btn_dialog primary" ng-click="deleteIt()">确定</a>
         </div>
     </div>
 </div>

@@ -51,25 +51,57 @@ appCtrls.controller('releaseListCtrl',['$scope','$state',
 /****************************/
 /***我的发布控制器***/
 /****************************/
-appCtrls.controller('myReleaseCtrl',['$scope',
-    function ($scope) {
+appCtrls.controller('myReleaseCtrl',['$scope','$state',
+    function ($scope,$state) {
         $scope.toggle = false;
         $scope.loading = false;
         $scope.lists = [
-            {'cardFree':'','product_name':'','description':'','thumbnail':[],'publish_date':'','price':'','deposit':""}
+            {
+                'cardFree': '',
+                'product_name': '',
+                'description': '',
+                'thumbnail': [],
+                'publish_date': '',
+                'price': '',
+                'deposit': "",
+                'is_collected': '',
+                'is_exist': ''
+            }
         ];
-        $scope.zu = function() {
+        $scope.zu = function (id) {
             $scope.toggle = !$scope.toggle;
+            sessionStorage.setItem("delId", id);
         };
-        $scope.close = function() {
+        $scope.close = function () {
             $scope.toggle = false;
         };
-        $scope.$on('loading', function(event,data) {
-            console.log('loading',data);
-            $scope.loading = true;//父级能得到值
+        $scope.deleteIt = function() {
+            $scope.loading = true;
             $scope.toggle = false;
-            $scope.$apply()
-        });
+            var sessionid = sessionStorage.getItem('sessionid');
+            var delId = sessionStorage.getItem("delId");
+            $.ajax("http://www.desckie.com/iwantrent/wxdeleteRental/",{
+                type: "POST",
+                contentType: 'application/x-www-form-urlencoded',
+                data: {
+                    uuid: delId,
+                    sessionid: sessionid
+                },
+                success: function(data) {
+                    $scope.loading = false;
+                    $scope.$apply();
+                    var res = JSON.parse(data);
+                    if(res.flag == true) {
+                        alert("删除成功");
+                        var delObj = $('.lists>div').find($('#'+delId)).parent().parent().parent().parent();
+                        $scope.lists.splice(delObj.index(),1);
+                        $scope.$apply();
+                    }else {
+                        alert(res.message);
+                    }
+                }
+            });
+        };
     }
 ]);
 /****************************/
@@ -119,7 +151,8 @@ appCtrls.controller('AppController',['$scope','$location',
 
                 // 添加的文件总大小
                     fileSize = 0,
-
+                //最大文件数量
+                    fileNumLimit = 30,
                 // 优化retina, 在retina下这个值是2
                     ratio = window.devicePixelRatio || 1,
 
