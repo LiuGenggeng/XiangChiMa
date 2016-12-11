@@ -8,6 +8,7 @@ app.run(['$location','$rootScope','$state',function($location, $rootScope,$state
     $rootScope.$on('$stateChangeSuccess', function (event, toState) {
         $rootScope.title = toState.title;
         if($location.path() == "/release" || $location.path() == "/myRelease") {
+            var login = sessionStorage.getItem("login");
             if(login == false) {
                 $state.go('releaseList')
             }

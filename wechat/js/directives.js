@@ -2,7 +2,15 @@
  * Created by Administrator on 2016/9/19.
  */
 var appDirectives = angular.module('appDirectives',[]);
-var login = true;
+if(sessionStorage.getItem("login")) {
+    if (sessionStorage.getItem("login") == true) {
+        sessionStorage.setItem("login",true);
+    }else {
+        sessionStorage.setItem("login",false);
+    }
+}else {
+    sessionStorage.setItem("login",false);
+}
 
 /****************************/
 /***获取验证码指令***/
@@ -85,7 +93,7 @@ appDirectives.directive('getCode',['$http','md5',function($http,md5) {
 /****************************/
 /***注册指令***/
 /****************************/
-appDirectives.directive('register',['$http',function($http) {
+appDirectives.directive('register',['$http','$state',function($http,$state) {
     return {
         restrict:'AE',
         link: function(scope,element,attrs) {
@@ -107,6 +115,7 @@ appDirectives.directive('register',['$http',function($http) {
                         var res = JSON.parse(data);
                         if(res.flag === true) {
                             alert('注册成功');
+                            $state.go('login');
                         }else {
                             alert(res.message)
                         }
