@@ -1,4 +1,4 @@
-<form class="release_form" name="release_form" ng-controller="AppController"  nv-file-drop="" uploader="uploader">
+<form class="release_form" name="release_form" ng-controller="AppController">
     <div class="weui_cell">
         <div class="weui_cell_bd weui_cell_primary  release_header">
             <p class="release_title">标题文字</p>
@@ -60,12 +60,12 @@
             <div class="weui_cell_bd weui_cell_primary">
                 <p ng-class="{'agree_content':!toggle_mortgage}" style="margin-left: 1.3rem">同意有效证件(学生证、身份证等),可抵适当押金</p>
                 <div class="input_mortgage" ng-show="toggle_mortgage">
-                    请输入抵扣额度: <input type="number" class="mortgage_input" name="cardFree" no-zero ng-model="mortgage_input"/> 元
+                    请输入抵扣额度: <input type="number" class="mortgage_input" name="cardFree" no-zero ng-model="mortgage_input" value="0"/> 元
                 </div>
             </div>
         </label>
     </div>
     <div class="weui_cell weui_cell_primary">
-        <input value="确认发布" ng-disabled="release_form.$invalid || uploader.queue.length==0" pattern="[0-9]*" type="button" class="weui_btn weui_btn_primary confirm_release" />
+        <input value="确认发布" ng-disabled="release_form.$invalid" pattern="[0-9]*" type="button" class="weui_btn weui_btn_primary confirm_release" />
     </div>
 </form>

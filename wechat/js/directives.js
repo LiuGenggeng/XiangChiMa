@@ -288,17 +288,13 @@ appDirectives.directive('noZero', [function() {
     };
 }]);
 /****************************/
-/**判断是否为登录指令**/
+/***发布指令添加input***/
 /****************************/
-/*
-appDirectives.directive('ifLogin', [function() {
+appDirectives.directive('applyInput', [function() {
     return {
         restrict: 'AE',
-        link: function(scope,element, attributes) {
-            /!***判断是否登录***!/
-            if(login == false) {
-                scope.goLogin()
-            }
+        link: function(scope) {
+
         }
     };
-}]);*/
+}]);

@@ -69,6 +69,10 @@ appCtrls.controller('myReleaseCtrl',['$scope','$state',
                 'is_exist': ''
             }
         ];
+        $scope.seeDetail = function(id) {
+            $state.go('itemDetails');
+            sessionStorage.setItem('uuid',id)
+        };
         $scope.zu = function (id) {
             $scope.toggle = !$scope.toggle;
             sessionStorage.setItem("delId", id);
@@ -114,16 +118,19 @@ appCtrls.controller('releaseCtrl',['$scope',
         $scope.toggle_mortgage = false;
         $scope.Description = '';
         $scope.release_much = '0';
-        $scope.release_mortgage = '0';
+        $scope.release_mortgage = "0";
         $scope.product_name = '';
-        $scope.mortgage_input = '0'
+        $scope.mortgage_input = '0';
+        $scope.apply = function() {
+            $scope.$apply();
+        };
     }
 ]);
 /****************************/
 /*发布表单提交及上传图片控制器*/
 /****************************/
-appCtrls.controller('AppController',['$scope','$location',
-    function ($scope,$location) {
+appCtrls.controller('AppController',['$scope','$location','$state',
+    function ($scope,$location,$state) {
         (function( $ ){
             // 当domReady的时候开始初始化
             //$(function() {
@@ -625,6 +632,7 @@ appCtrls.controller('AppController',['$scope','$location',
                             stats = uploader.getStats();
                             if ( stats.successNum ) {
                                 alert( '上传成功' );
+                                $state.go('releaseList');
                             } else {
                                 // 没有成功的图片，重设
                                 state = 'done';
@@ -721,73 +729,6 @@ appCtrls.controller('AppController',['$scope','$location',
             //});
 
         })( jQuery );
-
-        /*$scope.goLogin = function() {
-            $location.path("/releaseList")
-        };*/
-        //var sessionid = sessionStorage.getItem("sessionid");
-        //var uploader = $scope.uploader = new FileUploader({
-        //    url: 'http://www.desckie.com/iwantrent/wxreleaseRental/',
-        //    withCredentials:true
-        //});
-        //
-        //// FILTERS
-        //
-        //uploader.filters.push({
-        //    name: 'imageFilter',
-        //    fn: function(item /*{File|FileLikeObject}*/, options) {
-        //        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-        //        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-        //    }
-        //});
-        //
-        //// CALLBACKS
-        //
-        //uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
-        //    console.info('onWhenAddingFileFailed', item, filter, options);
-        //};
-        //uploader.onAfterAddingFile = function(fileItem) {
-        //    console.info('onAfterAddingFile', fileItem);
-        //};
-        //uploader.onAfterAddingAll = function(addedFileItems) {
-        //    console.info('onAfterAddingAll', addedFileItems);
-        //};
-        //uploader.onBeforeUploadItem = function(item) {
-        //    item.formData = {
-        //        sessionid:sessionid,
-        //        product_name: $(".weui_textarea_1").val(),
-        //        description: $(".weui_textarea_2").val(),
-        //        price: $(".price").val(),
-        //        deposit: $(".deposit").val(),
-        //        cardFree: $(".mortgage_input").val()
-        //    };
-        //    console.info('onBeforeUploadItem', item);
-        //};
-        //uploader.onProgressItem = function(fileItem, progress) {
-        //    console.info('onProgressItem', fileItem, progress);
-        //};
-        //uploader.onProgressAll = function(progress) {
-        //    console.info('onProgressAll', progress);
-        //};
-        //uploader.onSuccessItem = function(fileItem, response, status, headers) {
-        //    console.info('onSuccessItem', fileItem, response, status, headers);
-        //    console.log('onSuccessItem', fileItem);
-        //};
-        //uploader.onErrorItem = function(fileItem, response, status, headers) {
-        //    console.info('onErrorItem', fileItem, response, status, headers);
-        //};
-        //uploader.onCancelItem = function(fileItem, response, status, headers) {
-        //    console.info('onCancelItem', fileItem, response, status, headers);
-        //};
-        //uploader.onCompleteItem = function(fileItem, response, status, headers) {
-        //    console.info('onCompleteItem', fileItem, response, status, headers);
-        //    console.log('onSuccessItem', fileItem);
-        //};
-        //uploader.onCompleteAll = function() {
-        //    console.info('onCompleteAll');
-        //};
-        //
-        //console.info('uploader', uploader);
     }
 ]);
 /****************************/
