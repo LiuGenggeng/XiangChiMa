@@ -1,8 +1,8 @@
 <div class="lists" my-release>
     <div>
         <div ng-repeat="list in lists" class="list" >
-            <div class="list-top" ng-click="seeDetail(list.uuid)">
-                <div class="list-img">
+            <div class="list-top">
+                <div class="list-img" ng-click="seeDetail(list.uuid)">
                     <img ng-src="{{list.thumbnail[0]}}" alt="照片">
                 </div>
                 <div class="list-description">

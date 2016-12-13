@@ -97,10 +97,10 @@ appCtrls.controller('myReleaseCtrl',['$scope','$state',
                     $scope.$apply();
                     var res = JSON.parse(data);
                     if(res.flag == true) {
-                        alert("删除成功");
                         var delObj = $('.lists>div').find($('#'+delId)).parent().parent().parent().parent();
                         $scope.lists.splice(delObj.index(),1);
                         $scope.$apply();
+                        alert("删除成功");
                     }else {
                         alert(res.message);
                     }
@@ -114,16 +114,13 @@ appCtrls.controller('myReleaseCtrl',['$scope','$state',
 /****************************/
 appCtrls.controller('releaseCtrl',['$scope',
     function ($scope) {
-        $scope.imageSrc = "";
+        $scope.imageSrc = [];
         $scope.toggle_mortgage = false;
         $scope.Description = '';
         $scope.release_much = '0';
         $scope.release_mortgage = "0";
         $scope.product_name = '';
         $scope.mortgage_input = '0';
-        $scope.apply = function() {
-            $scope.$apply();
-        };
     }
 ]);
 /****************************/

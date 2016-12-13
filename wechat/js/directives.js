@@ -294,7 +294,9 @@ appDirectives.directive('applyInput', [function() {
     return {
         restrict: 'AE',
         link: function(scope) {
-
+            setTimeout(function() {
+                $("#mortgage_input").val(0);
+            },3000)
         }
     };
 }]);
