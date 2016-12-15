@@ -2,16 +2,6 @@
  * Created by Administrator on 2016/9/19.
  */
 var appDirectives = angular.module('appDirectives',[]);
-if(sessionStorage.getItem("login")) {
-    if (sessionStorage.getItem("login") == true) {
-        sessionStorage.setItem("login",true);
-    }else {
-        sessionStorage.setItem("login",false);
-    }
-}else {
-    sessionStorage.setItem("login",false);
-}
-
 /****************************/
 /***获取验证码指令***/
 /****************************/
@@ -147,7 +137,7 @@ appDirectives.directive('login',['$http','$state',function($http,$state) {
                     success: function(data) {
                         var res = JSON.parse(data);
                         if(res.flag == true) {
-                            login = true;
+                            sessionStorage.setItem("login",true);
                             $state.go('releaseList');
                             document.cookie="sessionid="+res.sessionid;
                             sessionStorage.setItem("sessionid",res.sessionid);

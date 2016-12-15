@@ -5,15 +5,33 @@
 /***不同页面设置不同的title***/
 /****************************/
 app.run(['$location','$rootScope','$state',function($location, $rootScope,$state){
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+        if(toState.name=="release" || toState.name=="myRelease"){
+            var login = sessionStorage.getItem("login");
+            if(login == 'false') {
+                event.preventDefault();
+                $rootScope.$broadcast('showGoLogin',true);
+            }
+        }
+    });
+    if(sessionStorage.getItem("login")) {
+        if (sessionStorage.getItem("login") == 'true') {
+            sessionStorage.setItem("login",'true');
+        }else {
+            sessionStorage.setItem("login",'false');
+        }
+    }else {
+        sessionStorage.setItem("login",'false');
+    }
     $rootScope.$on('$stateChangeSuccess', function (event, toState) {
         $rootScope.title = toState.title;
-        if($location.path() == "/release" || $location.path() == "/myRelease") {
-            var login = sessionStorage.getItem("login");
-            if(login == false) {
-                $state.go('releaseList')
-            }
-        }else {
-        }
+        //var $body = $('body');
+        //var $iframe = $("<iframe style='display:none;' src='./images/favicon.ico'></iframe>");
+        //$iframe.on('load',function() {
+        //    setTimeout(function() {
+        //        $iframe.off('load').remove();
+        //    }, 0);
+        //}).appendTo($body);
     });
 }]);
 var appCtrls = angular.module('appCtrls',[]);
@@ -46,7 +64,18 @@ appCtrls.controller('releaseListCtrl',['$scope','$state',
         };
         $scope.lists = [
             {'cardFree':'','product_name':'','description':'','thumbnail':[],'publish_date':'','price':'','deposit':""}
-        ]
+        ];
+        $scope.toggle = false;
+        $scope.close = function(){
+            $scope.toggle = false;
+        };
+        $scope.goLogin = function() {
+            $state.go('login');
+        };
+        $scope.$on("showGoLogin",function(event,data) {
+            $scope.toggle = true;
+            $scope.$apply()
+        })
     }
 ]);
 /****************************/
