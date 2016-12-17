@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
     <title ng-bind="title">发布列表</title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="framework/weui.min.css">
     <link rel="stylesheet" href="css/release.css">
     <link rel="stylesheet" href="framework/webuploader.css">
+    <link rel="stylesheet" href="framework/dropload.css">
 </head>
 <body>
+    <div ng-include="'tpls/title.html'"></div>
     <div ui-view class="container"></div>
 </body>
 <script type="text/javascript" src="framework/angularJs/angular.min.js"></script>
@@ -22,5 +26,6 @@
 <script type="text/javascript" src="js/controller.js"></script>
 <script type="text/javascript" src="js/directives.js"></script>
 <script type="text/javascript" src="js/server.js"></script>
+<script type="text/javascript" src="framework/dropload.min.js"></script>
 <script type="text/javascript" src="//cdn.bootcss.com/angular-md5/0.1.10/angular-md5.min.js"></script>
 </html>

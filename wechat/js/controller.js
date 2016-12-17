@@ -24,14 +24,9 @@ app.run(['$location','$rootScope','$state',function($location, $rootScope,$state
         sessionStorage.setItem("login",'false');
     }
     $rootScope.$on('$stateChangeSuccess', function (event, toState) {
-        $rootScope.title = toState.title;
-        //var $body = $('body');
-        //var $iframe = $("<iframe style='display:none;' src='./images/favicon.ico'></iframe>");
-        //$iframe.on('load',function() {
-        //    setTimeout(function() {
-        //        $iframe.off('load').remove();
-        //    }, 0);
-        //}).appendTo($body);
+        $rootScope.title = "想租吗";
+        console.log(toState.title);
+        $(".title").html(toState.title);
     });
 }]);
 var appCtrls = angular.module('appCtrls',[]);

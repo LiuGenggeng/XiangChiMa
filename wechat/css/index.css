@@ -92,6 +92,15 @@ a {
 body {
     background-color: #eeeeee;
 }
+.title {
+    position: fixed;
+    width: 100%;
+    padding: 0.5rem 0;
+    background-color: #000000;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 0.9rem;
+}
 .weui_cell:before {
     content: none !important;
 }
@@ -102,6 +111,9 @@ body {
     display: flex;
     display: -webkit-flex;
     justify-content: center;
+}
+.lists>div {
+    margin-top: 2rem;
 }
 .list {
     margin-top: 1.3rem;

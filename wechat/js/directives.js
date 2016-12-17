@@ -158,6 +158,8 @@ appDirectives.directive('releaseList',['$http',function($http) {
     return {
         restrict: 'AE',
         link: function(scope, element, attrs) {
+            document.title = "想租吗";
+            $("title").html("发布列表");
             var DateTime = new Date();
             console.log(DateTime);
             $http.get('http://www.desckie.com/iwantrent/getAllProduct/').success(function(res) {
@@ -168,6 +170,30 @@ appDirectives.directive('releaseList',['$http',function($http) {
                 }
             }).error(function() {
                 alert("error")
+            });
+
+            //往下滑动获取更多发布
+            $('.element').dropload({
+                scrollArea : window,
+                autoLoad: false,
+                loadDownFn : function(me){
+                        var uuid = scope.lists[scope.lists.length-1].uuid;
+                        $http.get('http://www.desckie.com/iwantrent/getAllProduct/?uuid='+uuid).success(function(res) {
+                            if(res.flag == true) {
+                                res.data.data.map(function(single) {
+                                    scope.lists.push(single);
+                                });
+                                console.log(scope.lists);
+                                me.resetload();
+                            }else{
+                                alert("error")
+                            }
+                        }).error(function() {
+                            alert("error");
+                            me.resetload();
+                        });
+
+                }
             });
         }
     }
