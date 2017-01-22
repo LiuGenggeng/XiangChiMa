@@ -101,8 +101,7 @@ appDirectives.directive('register',['$http','$state',function($http,$state) {
                         'password': passwordInput,
                         'code': code
                     },
-                    success: function(data) {
-                        var res = JSON.parse(data);
+                    success: function(res) {
                         if(res.flag === true) {
                             alert('注册成功');
                             $state.go('login');
@@ -134,8 +133,7 @@ appDirectives.directive('login',['$http','$state',function($http,$state) {
                         'username': username,
                         'password': passwordInput
                     },
-                    success: function(data) {
-                        var res = JSON.parse(data);
+                    success: function(res) {
                         if(res.flag == true) {
                             sessionStorage.setItem("login",true);
                             $state.go('releaseList');
@@ -213,8 +211,7 @@ appDirectives.directive('myRelease',['$http','$state',function($http,$state) {
                 data: {
                     sessionid: sessionid
                 },
-                success: function(data) {
-                    var res = JSON.parse(data);
+                success: function(res) {
                     if(res.flag == true) {
                         if(res.data.length !== 0) {
                             scope.lists = res.data;
@@ -248,8 +245,7 @@ appDirectives.directive('itemDetail',['$http','$state',function($http,$state) {
                 data:{
                     'uuid':itemId
                 },
-                success: function(response) {
-                    var res = JSON.parse(response);
+                success: function(res) {
                     if (res.flag === true) {
                         scope.publish_date = res.data.publish_date;
                         scope.price        = res.data.price;

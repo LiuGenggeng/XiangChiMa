@@ -116,10 +116,9 @@ appCtrls.controller('myReleaseCtrl',['$scope','$state',
                     uuid: delId,
                     sessionid: sessionid
                 },
-                success: function(data) {
+                success: function(res) {
                     $scope.loading = false;
                     $scope.$apply();
-                    var res = JSON.parse(data);
                     if(res.flag == true) {
                         var delObj = $('.lists>div').find($('#'+delId)).parent().parent().parent().parent();
                         $scope.lists.splice(delObj.index(),1);
