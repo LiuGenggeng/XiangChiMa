@@ -92,7 +92,7 @@ appDirectives.directive('register',['$http','$state',function($http,$state) {
                 var passwordInput = $("#password").val();
                 var code = $("#code").val();
                 //注册指令，发送手机号，密码，验证码，token
-                $.ajax("http://www.desckie.com/iwantrent/signup/",{
+                $.ajax("https://www.desckie.com/iwantrent/signup/",{
                     type: "POST",
                     contentType: 'application/x-www-form-urlencoded',
                     data:{
@@ -101,8 +101,7 @@ appDirectives.directive('register',['$http','$state',function($http,$state) {
                         'password': passwordInput,
                         'code': code
                     },
-                    success: function(data) {
-                        var res = JSON.parse(data);
+                    success: function(res) {
                         if(res.flag === true) {
                             alert('注册成功');
                             $state.go('login');
@@ -127,15 +126,14 @@ appDirectives.directive('login',['$http','$state',function($http,$state) {
                 var username = $("#name").val();
                 var passwordInput = $("#password").val();
                 //登录指令，发送手机号，密码
-                $.ajax("http://www.desckie.com/iwantrent/login/",{
+                $.ajax("https://www.desckie.com/iwantrent/login/",{
                     type: "POST",
                     contentType: 'application/x-www-form-urlencoded',
                     data:{
                         'username': username,
                         'password': passwordInput
                     },
-                    success: function(data) {
-                        var res = JSON.parse(data);
+                    success: function(res) {
                         if(res.flag == true) {
                             sessionStorage.setItem("login",true);
                             $state.go('releaseList');
@@ -162,14 +160,14 @@ appDirectives.directive('releaseList',['$http',function($http) {
             $("title").html("发布列表");
             var DateTime = new Date();
             console.log(DateTime);
-            $http.get('http://www.desckie.com/iwantrent/getAllProduct/').success(function(res) {
+            $http.get('https://www.desckie.com/iwantrent/getAllProduct/').success(function(res) {
                 if(res.flag == true) {
                     scope.lists = res.data.data;
                 }else{
-                    alert("error")
+
                 }
             }).error(function() {
-                alert("error")
+
             });
 
             //往下滑动获取更多发布
@@ -178,7 +176,7 @@ appDirectives.directive('releaseList',['$http',function($http) {
                 autoLoad: false,
                 loadDownFn : function(me){
                         var uuid = scope.lists[scope.lists.length-1].uuid;
-                        $http.get('http://www.desckie.com/iwantrent/getAllProduct/?uuid='+uuid).success(function(res) {
+                        $http.get('https://www.desckie.com/iwantrent/getAllProduct/?uuid='+uuid).success(function(res) {
                             if(res.flag == true) {
                                 res.data.data.map(function(single) {
                                     scope.lists.push(single);
@@ -186,10 +184,10 @@ appDirectives.directive('releaseList',['$http',function($http) {
                                 console.log(scope.lists);
                                 me.resetload();
                             }else{
-                                alert("error")
+
                             }
                         }).error(function() {
-                            alert("error");
+
                             me.resetload();
                         });
 
@@ -207,14 +205,13 @@ appDirectives.directive('myRelease',['$http','$state',function($http,$state) {
         restrict: 'AE',
         link: function(scope, element, attrs) {
             var sessionid = sessionStorage.getItem("sessionid");
-            $.ajax("http://www.desckie.com/iwantrent/wxgetMyRental/",{
+            $.ajax("https://www.desckie.com/iwantrent/wxgetMyRental/",{
                 type: "POST",
                 contentType: 'application/x-www-form-urlencoded',
                 data: {
                     sessionid: sessionid
                 },
-                success: function(data) {
-                    var res = JSON.parse(data);
+                success: function(res) {
                     if(res.flag == true) {
                         if(res.data.length !== 0) {
                             scope.lists = res.data;
@@ -242,14 +239,13 @@ appDirectives.directive('itemDetail',['$http','$state',function($http,$state) {
         restrict: 'AE',
         link: function(scope, element, attrs) {
             var itemId = sessionStorage.getItem("uuid");
-            $.ajax("http://www.desckie.com/iwantrent/getProductInfo/",{
+            $.ajax("https://www.desckie.com/iwantrent/getProductInfo/",{
                 type: "POST",
                 contentType: 'application/x-www-form-urlencoded',
                 data:{
                     'uuid':itemId
                 },
-                success: function(response) {
-                    var res = JSON.parse(response);
+                success: function(res) {
                     if (res.flag === true) {
                         scope.publish_date = res.data.publish_date;
                         scope.price        = res.data.price;

@@ -109,17 +109,16 @@ appCtrls.controller('myReleaseCtrl',['$scope','$state',
             $scope.toggle = false;
             var sessionid = sessionStorage.getItem('sessionid');
             var delId = sessionStorage.getItem("delId");
-            $.ajax("http://www.desckie.com/iwantrent/wxdeleteRental/",{
+            $.ajax("https://www.desckie.com/iwantrent/wxdeleteRental/",{
                 type: "POST",
                 contentType: 'application/x-www-form-urlencoded',
                 data: {
                     uuid: delId,
                     sessionid: sessionid
                 },
-                success: function(data) {
+                success: function(res) {
                     $scope.loading = false;
                     $scope.$apply();
-                    var res = JSON.parse(data);
                     if(res.flag == true) {
                         var delObj = $('.lists>div').find($('#'+delId)).parent().parent().parent().parent();
                         $scope.lists.splice(delObj.index(),1);
@@ -306,7 +305,7 @@ appCtrls.controller('AppController',['$scope','$location','$state',
                     swf: '../framework/Uploader.swf',
                     chunked: false,
                     chunkSize: 512 * 1024,
-                    server: 'http://www.desckie.com/iwantrent/wxreleaseRental/',
+                    server: 'https://www.desckie.com/iwantrent/wxreleaseRental/',
                     // runtimeOrder: 'flash',
 
                     // accept: {

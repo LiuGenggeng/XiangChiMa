@@ -78,7 +78,6 @@ table {
 }
 
 #uploader .placeholder {
-    border: 3px dashed #e6e6e6;
     min-height: 238px;
     padding-top: 158px;
     text-align: center;
